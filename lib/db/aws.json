@@ -1,0 +1,61 @@
+{
+  "title": "AWS Enumeration",
+  "checks": [
+    {
+      "description": "AWS Secrets",
+      "regex": "AKIA[0-9A-Z]{16}"
+    },
+    {
+      "description": "AWS ARN",
+      "regex": "arn:aws:.*"
+    },
+    {
+      "description": "AWS EC2 Internal",
+      "regex": ".*\\.compute\\.internal"
+    },
+    {
+      "description": "AWS EC2 External 001",
+      "regex": "ec2-.+?\\.compute\\.amazonaws\\.com"
+    },
+    {
+      "description": "AWS EC2 External 002",
+      "regex": "ec2-.+?\\.compute-1\\.amazonaws\\.com"
+    },
+    {
+      "description": "AWS ELB 001",
+      "regex": ".*\\.elb\\.amazonaws\\.com"
+    },
+    {
+      "description": "AWS ELB 002",
+      "regex": ".*\\.elb\\..+?\\.amazonaws\\.com"
+    },
+    {
+      "description": "AWS RDS",
+      "regex": ".*\\.rds\\.amazonaws\\.com"
+    },
+    {
+      "description": "AWS ElasticCache",
+      "regex": ".*\\.cache\\.amazonaws\\.com"
+    },
+    {
+      "description": "AWS S3 Endpoint 001",
+      "regex": ".*\\.s3\\.amazonaws\\.com"
+    },
+    {
+      "description": "AWS S3 Endpoint 002",
+      "regex": ".*\\.s3-website.+?\\.amazonaws\\.com"
+    },
+    {
+      "description": "AWS S3 Bucket",
+      "regex": "s3://[a-z0-9-.]+"
+    },
+    {
+      "description": "AWS CloudFront",
+      "regex": ".*\\.cloudfront\\.net"
+    },
+    {
+      "description": "AWS API Gateway",
+      "regex": "execute-api\\..+?\\.amazonaws\\.com"
+    }
+  ]
+}
