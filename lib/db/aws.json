@@ -1,61 +1,74 @@
 {
-  "title": "AWS Enumeration",
-  "checks": [
-    {
-      "description": "AWS Secrets",
-      "regex": "AKIA[0-9A-Z]{16}"
+  "title": "AWS Secrets & Enumeration",
+  "checks": [{
+      "title": "AWS Secrets",
+      "regex": "AKIA[0-9A-Z]{16}",
+      "severity": 10
     },
     {
-      "description": "AWS ARN",
-      "regex": "arn:aws:.*"
+      "title": "AWS ARN",
+      "regex": "arn:aws:.*",
+      "severity": 1
     },
     {
-      "description": "AWS EC2 Internal",
-      "regex": ".*\\.compute\\.internal"
+      "title": "AWS EC2 Internal",
+      "regex": ".*\\.compute\\.internal",
+      "severity": 1
     },
     {
-      "description": "AWS EC2 External 001",
-      "regex": "ec2-.+?\\.compute\\.amazonaws\\.com"
+      "title": "AWS EC2 External 001",
+      "regex": "ec2-.+?\\.compute\\.amazonaws\\.com",
+      "severity": 1
     },
     {
-      "description": "AWS EC2 External 002",
-      "regex": "ec2-.+?\\.compute-1\\.amazonaws\\.com"
+      "title": "AWS EC2 External 002",
+      "regex": "ec2-.+?\\.compute-1\\.amazonaws\\.com",
+      "severity": 1
     },
     {
-      "description": "AWS ELB 001",
-      "regex": ".*\\.elb\\.amazonaws\\.com"
+      "title": "AWS ELB 001",
+      "regex": ".*\\.elb\\.amazonaws\\.com",
+      "severity": 1
     },
     {
-      "description": "AWS ELB 002",
-      "regex": ".*\\.elb\\..+?\\.amazonaws\\.com"
+      "title": "AWS ELB 002",
+      "regex": ".*\\.elb\\..+?\\.amazonaws\\.com",
+      "severity": 1
     },
     {
-      "description": "AWS RDS",
-      "regex": ".*\\.rds\\.amazonaws\\.com"
+      "title": "AWS RDS",
+      "regex": ".*\\.rds\\.amazonaws\\.com",
+      "severity": 1
     },
     {
-      "description": "AWS ElasticCache",
-      "regex": ".*\\.cache\\.amazonaws\\.com"
+      "title": "AWS ElasticCache",
+      "regex": ".*\\.cache\\.amazonaws\\.com",
+      "severity": 1
     },
     {
-      "description": "AWS S3 Endpoint 001",
-      "regex": ".*\\.s3\\.amazonaws\\.com"
+      "title": "AWS S3 Endpoint 001",
+      "regex": ".*\\.s3\\.amazonaws\\.com",
+      "severity": 1
     },
     {
-      "description": "AWS S3 Endpoint 002",
-      "regex": ".*\\.s3-website.+?\\.amazonaws\\.com"
+      "title": "AWS S3 Endpoint 002",
+      "regex": ".*\\.s3-website.+?\\.amazonaws\\.com",
+      "severity": 1
     },
     {
-      "description": "AWS S3 Bucket",
-      "regex": "s3://[a-z0-9-.]+"
+      "title": "AWS S3 Bucket",
+      "regex": "s3://[a-z0-9-.]+",
+      "severity": 1
     },
     {
-      "description": "AWS CloudFront",
-      "regex": ".*\\.cloudfront\\.net"
+      "title": "AWS CloudFront",
+      "regex": ".*\\.cloudfront\\.net",
+      "severity": 1
     },
     {
-      "description": "AWS API Gateway",
-      "regex": "execute-api\\..+?\\.amazonaws\\.com"
+      "title": "AWS API Gateway",
+      "regex": "execute-api\\..+?\\.amazonaws\\.com",
+      "severity": 1
     }
   ]
 }

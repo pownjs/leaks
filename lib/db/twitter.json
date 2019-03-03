@@ -1,0 +1,8 @@
+{
+  "title": "Twitter Secrets",
+  "checks": [{
+    "title": "Twitter Token",
+    "regex": "twitter.*['\"][0-9a-zA-Z]{35,44}['\"]",
+    "severity": 10
+  }]
+}

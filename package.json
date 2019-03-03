@@ -1,0 +1,39 @@
+{
+  "name": "@pown/leaks",
+  "version": "2.0.0",
+  "description": "Pownage guaranteed",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "leaks",
+    "url": "git+https://github.com/pownjs/pown-leaks.git"
+  },
+  "keywords": [
+    "exploit",
+    "framework"
+  ],
+  "author": "pdp <pdp@gnucitizen.org>",
+  "contributors": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pownjs/pown-leaks/issues"
+  },
+  "homepage": "https://github.com/pownjs/pown-leaks#readme",
+  "devDependencies": {
+    "@pown/cli": "^2.12.3",
+    "@pown/toolchain": "^2.0.0"
+  },
+  "dependencies": {},
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "extends": "./.babelrc"
+        }
+      ]
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "title": "GitHhub Secrets",
+  "checks": [{
+    "title": "GitHub Token",
+    "regex": "github.*['\"][0-9a-zA-Z]{35,40}['\"]",
+    "severity": 10
+  }]
+}

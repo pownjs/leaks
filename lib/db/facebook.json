@@ -1,0 +1,8 @@
+{
+  "title": "Facebook Secrets",
+  "checks": [{
+    "title": "Facebook Token",
+    "regex": "facebook.*['\"][0-9a-f]{32}['\"]",
+    "severity": 10
+  }]
+}
