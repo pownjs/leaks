@@ -7,7 +7,7 @@
     },
     {
       "title": "AWS ARN",
-      "regex": "arn:aws:[\\w.-:]+",
+      "regex": "arn:aws:[\\w.-]+:[\\w.-:]+",
       "severity": 1
     },
     {
