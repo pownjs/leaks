@@ -1,15 +1,24 @@
 {
   "title": "Stripe Secrets",
   "checks": [{
-      "title": "Strip Live API Key",
-      "regex": "(sk|pk)_live_[0-9a-zA-Z]{10,32}",
+      "title": "Strip Secret Live Key",
+      "regex": "sk_live_[0-9a-zA-Z]{10,32}",
       "severity": 10
     },
     {
-      "title": "Strip Test API Key",
-      "regex": "(sk|pk)_test_[0-9a-zA-Z]{10,32}",
+      "title": "Strip Secret Test Key",
+      "regex": "sk_test_[0-9a-zA-Z]{10,32}",
       "severity": 5
-
+    },
+    {
+      "title": "Strip Public Live Key",
+      "regex": "pk_live_[0-9a-zA-Z]{10,32}",
+      "severity": 0
+    },
+    {
+      "title": "Strip Public Test Key",
+      "regex": "pk_test_[0-9a-zA-Z]{10,32}",
+      "severity": 0
     }
   ]
 }
