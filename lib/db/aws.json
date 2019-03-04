@@ -7,52 +7,52 @@
     },
     {
       "title": "AWS ARN",
-      "regex": "arn:aws:.*",
+      "regex": "arn:aws:[\\w.-:]+",
       "severity": 1
     },
     {
       "title": "AWS EC2 Internal",
-      "regex": ".*\\.compute\\.internal",
+      "regex": "[\\w.-]+\\.compute\\.internal",
       "severity": 1
     },
     {
       "title": "AWS EC2 External 001",
-      "regex": "ec2-.+?\\.compute\\.amazonaws\\.com",
+      "regex": "ec2-[\\w.-]+?\\.compute\\.amazonaws\\.com",
       "severity": 1
     },
     {
       "title": "AWS EC2 External 002",
-      "regex": "ec2-.+?\\.compute-1\\.amazonaws\\.com",
+      "regex": "ec2-[\\w.-]+?\\.compute-1\\.amazonaws\\.com",
       "severity": 1
     },
     {
       "title": "AWS ELB 001",
-      "regex": ".*\\.elb\\.amazonaws\\.com",
+      "regex": "[\\w.-]+\\.elb\\.amazonaws\\.com",
       "severity": 1
     },
     {
       "title": "AWS ELB 002",
-      "regex": ".*\\.elb\\..+?\\.amazonaws\\.com",
+      "regex": "[\\w.-]+\\.elb\\.[\\w.-]+?\\.amazonaws\\.com",
       "severity": 1
     },
     {
       "title": "AWS RDS",
-      "regex": ".*\\.rds\\.amazonaws\\.com",
+      "regex": "[\\w.-]+\\.rds\\.amazonaws\\.com",
       "severity": 1
     },
     {
       "title": "AWS ElasticCache",
-      "regex": ".*\\.cache\\.amazonaws\\.com",
+      "regex": "[\\w.-]+\\.cache\\.amazonaws\\.com",
       "severity": 1
     },
     {
       "title": "AWS S3 Endpoint 001",
-      "regex": ".*\\.s3\\.amazonaws\\.com",
+      "regex": "[\\w.-]+\\.s3\\.amazonaws\\.com",
       "severity": 1
     },
     {
       "title": "AWS S3 Endpoint 002",
-      "regex": ".*\\.s3-website.+?\\.amazonaws\\.com",
+      "regex": "[\\w.-]+\\.s3-website[\\w.-]+?\\.amazonaws\\.com",
       "severity": 1
     },
     {
@@ -62,12 +62,12 @@
     },
     {
       "title": "AWS CloudFront",
-      "regex": ".*\\.cloudfront\\.net",
+      "regex": "[\\w.-]+\\.cloudfront\\.net",
       "severity": 1
     },
     {
       "title": "AWS API Gateway",
-      "regex": "execute-api\\..+?\\.amazonaws\\.com",
+      "regex": "execute-api\\.[\\w.-]+?\\.amazonaws\\.com",
       "severity": 1
     }
   ]
