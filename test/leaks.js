@@ -4,21 +4,21 @@ const { LeaksPilot } = require('../lib/leaks')
 
 describe('LeaksPilot', () => {
     describe('#iterateOverSearch', () => {
-        it('must not produce results', async() => {
+        it('must not produce results', () => {
             const db = {}
 
             const lp = new LeaksPilot({ db })
 
             const results = []
 
-            for await (const match of lp.iterateOverSearch('')) {
+            for (const match of lp.iterateOverSearch('')) {
                 results.push(match)
             }
 
             assert.ok(results.length === 0)
         })
 
-        it('must produce results', async() => {
+        it('must produce results', () => {
             const db = {
                 test: {
                     checks: [{
@@ -31,7 +31,7 @@ describe('LeaksPilot', () => {
 
             const results = []
 
-            for await (const match of lp.iterateOverSearch('a b secret c secret x secret y z')) {
+            for (const match of lp.iterateOverSearch('a b secret c secret x secret y z')) {
                 results.push(match)
             }
 
@@ -39,7 +39,7 @@ describe('LeaksPilot', () => {
             assert.ok(results.every((result) => result.index > 0))
         })
 
-        it('must produce results with groups', async() => {
+        it('must produce results with groups', () => {
             const db = {
                 test: {
                     checks: [{
@@ -52,7 +52,7 @@ describe('LeaksPilot', () => {
 
             const results = []
 
-            for await (const match of lp.iterateOverSearch('a b secret1 c secret2 x secret3 y z')) {
+            for (const match of lp.iterateOverSearch('a b secret1 c secret2 x secret3 y z')) {
                 results.push(match)
             }
 
