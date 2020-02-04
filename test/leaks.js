@@ -84,5 +84,27 @@ describe('LeaksPilot', () => {
             assert.ok(results.every((result) => result.index > 0))
             assert.deepEqual(results.map((result) => result.find), ['secret1', 'secret2', 'secret3'])
         })
+
+        it('must produce results with groups', () => {
+            const db = {
+                test: {
+                    checks: [{
+                        regex: /secret\d+/
+                    }]
+                }
+            }
+
+            const lp = new LeaksPilot({ db })
+
+            const results = []
+
+            for (const match of lp.iterateOverSearchPerLine('a;b;secret1;c;secret2;x;secret3;y;z')) {
+                results.push(match)
+            }
+
+            assert.ok(results.length === 3)
+            assert.ok(results.every((result) => result.index > 0))
+            assert.deepEqual(results.map((result) => result.find), ['secret1', 'secret2', 'secret3'])
+        })
     })
 })
