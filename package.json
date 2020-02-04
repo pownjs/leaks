@@ -23,8 +23,7 @@
   },
   "homepage": "https://github.com/pownjs/pown-leaks#readme",
   "devDependencies": {
-    "@pown/cli": "^2.20.0",
-    "@pown/toolchain": "^2.0.0"
+    "@pown/cli": "^2.20.0"
   },
   "dependencies": {},
   "browserify": {
