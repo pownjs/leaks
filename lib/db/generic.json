@@ -1,0 +1,59 @@
+{
+  "title": "Generic Secrets",
+  "checks": [{
+      "title": "Generic Key",
+      "regex": "[0-9a-z_]*(key)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-zA-Z]+[0-9a-zA-Z\\.\\-_=]{4,}|[a-zA-Z]+[0-9]+[0-9a-zA-Z\\.\\-_]{4,})",
+      "severity": 0
+    },
+    {
+      "title": "Generic Key",
+      "regex": "[0-9A-Z_]*(KEY)\\s*=\\s*['\"]?([0-9]+[a-zA-Z]+[0-9a-zA-Z\\.\\-_=]{4,}|[a-zA-Z]+[0-9]+[0-9a-zA-Z\\.\\-_]{4,})",
+      "severity": 0
+    },
+    {
+      "title": "Generic Token",
+      "regex": "[0-9a-z_]*(token)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-zA-Z]+[0-9a-zA-Z\\.\\-_=]{4,}|[a-zA-Z]+[0-9]+[0-9a-zA-Z\\.\\-_]{6,})",
+      "severity": 0
+    },
+    {
+      "title": "Generic Token",
+      "regex": "[0-9A-Z_]*(TOKEN)\\s*=\\s*['\"]?([0-9]+[a-zA-Z]+[0-9a-zA-Z\\.\\-_=]{4,}|[a-zA-Z]+[0-9]+[0-9a-zA-Z\\.\\-_]{6,})",
+      "severity": 0
+    },
+    {
+      "title": "Generic Secret",
+      "regex": "[0-9a-z_]*(secret)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][\\w\\W]{6,}",
+      "severity": 0
+    },
+    {
+      "title": "Generic Secret",
+      "regex": "[0-9A-Z_]*(SECRET)\\s*=\\s*['\"]?[\\w\\W]{6,}",
+      "severity": 0
+    },
+    {
+      "title": "Generic Password",
+      "regex": "[0-9a-z_]*(password|passwd|pwd)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][\\w\\W]{6,}",
+      "severity": 0
+    },
+    {
+      "title": "Generic Password",
+      "regex": "[0-9A-Z_]*(PASSWORD|PASSWD|PWD)\\s*=\\s*['\"]?[\\w\\W]{6,}",
+      "severity": 0
+    },
+    {
+      "title": "Generic Authorization",
+      "regex": "(authorization)\\s*:\\s*(bearer|token|basic)\\s+[0-9a-zA-Z\\.\\-_]{6,}",
+      "severity": 0
+    },
+    {
+      "title": "Sensitive URL Credentials",
+      "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$]+?:[^\\s\\{\\}\\(\\)\\<\\>\\/%]+?@[^\\s'\"\\)]+",
+      "severity": 7
+    },
+    {
+      "title": "Sensitive URL",
+      "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$]+?@[^\\s'\"\\)]+",
+      "severity": 5
+    }
+  ]
+}

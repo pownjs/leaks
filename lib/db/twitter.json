@@ -1,8 +1,14 @@
 {
   "title": "Twitter Secrets",
   "checks": [{
-    "title": "Twitter Token",
-    "regex": "twitter.*['\"][0-9a-zA-Z]{35,44}['\"]",
-    "severity": 10
-  }]
+      "title": "Twitter Client ID",
+      "regex": "twitter(.{0,20})?['\\\"][0-9a-z]{18,25}['\\\"]",
+      "severity": 6
+    },
+    {
+      "title": "Twitter Secret Key",
+      "regex": "twitter(.{0,20})?['\\\"][0-9a-z]{35,44}['\\\"]",
+      "severity": 7
+    }
+  ]
 }

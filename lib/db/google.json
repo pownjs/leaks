@@ -1,0 +1,19 @@
+{
+  "title": "Google Secrets",
+  "checks": [{
+      "title": "Google Cloud Platform API key",
+      "regex": "(google|gcp|youtube|drive|yt)(.{0,20})?['\\\"][AIza[0-9a-z\\\\-_]{35}]['\\\"]",
+      "severity": 9
+    },
+    {
+      "title": "Google API Key",
+      "regex": "AIza[0-9A-Za-z\\-_]{35}",
+      "severity": 7
+    },
+    {
+      "title": "Google Oauth ID",
+      "regex": "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com",
+      "severity": 5
+    }
+  ]
+}

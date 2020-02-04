@@ -1,0 +1,8 @@
+{
+  "title": "Trello Secrets",
+  "checks": [{
+    "title": "Trello URL",
+    "regex": "https://trello.com/b/[0-9a-zA-Z]/[0-9a-zA-Z_-]+",
+    "severity": 1
+  }]
+}

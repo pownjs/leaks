@@ -1,0 +1,8 @@
+{
+  "title": "Mailgun Secrets",
+  "checks": [{
+    "title": "Mailgun API Key",
+    "regex": "key-[0-9a-zA-Z]{32}",
+    "severity": 9
+  }]
+}

@@ -4,7 +4,8 @@
   "description": "Pownage guaranteed",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "build": "./scripts/generate-index.sh"
   },
   "repository": {
     "type": "leaks",

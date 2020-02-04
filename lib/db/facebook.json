@@ -1,8 +1,20 @@
 {
   "title": "Facebook Secrets",
   "checks": [{
-    "title": "Facebook Token",
-    "regex": "facebook.*['\"][0-9a-f]{32}['\"]",
-    "severity": 10
-  }]
+      "title": "Facebook Client ID",
+      "regex": "(facebook|fb)(.{0,20})?['\\\"][0-9]{13,17}['\\\"]",
+      "severity": 6
+    },
+    {
+      "title": "Facebook Access Token",
+      "regex": "EAACEdEose0cBA[0-9A-Za-z]+",
+      "severity": 6
+
+    },
+    {
+      "title": "Facebook Secret Key",
+      "regex": "(facebook|fb)(.{0,20})?['\\\"][0-9a-f]{32}['\\\"]",
+      "severity": 7
+    }
+  ]
 }
