@@ -13,12 +13,12 @@
     {
       "title": "Strip Public Live Key",
       "regex": "pk_live_[0-9a-zA-Z]{24}",
-      "severity": 0
+      "severity": 1
     },
     {
       "title": "Strip Public Test Key",
       "regex": "pk_test_[0-9a-zA-Z]{24}",
-      "severity": 0
+      "severity": 1
     }
   ]
 }
