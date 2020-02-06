@@ -12,4 +12,30 @@ describe('db', () => {
             })
         })
     })
+
+    it('db checks validate', () => {
+        Object.entries(db).forEach(([name, { checks }]) => {
+            checks.forEach(({ title, regex, tests }) => {
+                if (tests) {
+                    const { possitive, negative } = tests
+
+                    if (possitive) {
+                        const r = new RegExp(regex, 'i')
+
+                        possitive.forEach((test, index) => {
+                            assert.ok(r.test(test), `${title} validates against possitive test ${index}`)
+                        })
+                    }
+
+                    if (negative) {
+                        const r = new RegExp(regex, 'i')
+
+                        negative.forEach((test, index) => {
+                            assert.ok(!r.test(test), `${title} validates against negative test ${index}`)
+                        })
+                    }
+                }
+            })
+        })
+    })
 })
