@@ -47,13 +47,17 @@
     },
     {
       "title": "Sensitive URL Credentials",
-      "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$]+?:[^\\s\\{\\}\\(\\)\\<\\>\\/%]+?@[^\\s'\"\\)]+",
+      "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\"]+?:[^\\s\\{\\}\\(\\)\\<\\>\\/%]+?@[^\\s'\"\\)]+",
       "severity": 7
     },
     {
       "title": "Sensitive URL",
-      "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$]+?@[^\\s'\"\\)]+",
-      "severity": 5
+      "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\"]+?@[^\\s'\"\\)]+",
+      "severity": 5,
+      "tests": {
+        "possitive": ["http://user@acme.com", "ftp://user@acme.com", "http://user:password@acme.com"],
+        "negative": ["https://test.com\"@acme.com"]
+      }
     }
   ]
 }
