@@ -19,6 +19,8 @@ describe('db', () => {
                 if (tests) {
                     const { possitive, negative } = tests
 
+                    new RegExp(regex, 'i')
+
                     if (possitive) {
                         const r = new RegExp(regex, 'i')
 
