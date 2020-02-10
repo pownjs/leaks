@@ -35,6 +35,7 @@
       "regex": "[0-9a-z_]*(password|passwd|pwd)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][\\w\\W]{6,}",
       "severity": 1,
       "tests": {
+        "possitive": ["'password'='secret'"],
         "negative": ["'PASSWORD': '',"]
       }
     },
