@@ -8,7 +8,10 @@ Pown Leaks is an active database of regular expressions that help you search for
 
 ## Credits
 
-Some signatures were borrowed or heavily inspired by the awesome GitLeaks Project https://github.com/zricethezav/gitleaks.
+Some signatures were borrowed or heavily inspired by the following projects:
+
+* gitleaks - https://github.com/zricethezav/gitleaks
+* shhgit - https://github.com/eth0izzle/shhgit
 
 This tool is part of [secapps.com](https://secapps.com) open-source initiative.
 
