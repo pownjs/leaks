@@ -33,12 +33,18 @@
     {
       "title": "Generic Password",
       "regex": "[0-9a-z_]*(password|passwd|pwd)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][\\w\\W]{6,}",
-      "severity": 1
+      "severity": 1,
+      "tests": {
+        "negative": ["'PASSWORD': '',"]
+      }
     },
     {
       "title": "Generic Password",
       "regex": "[0-9a-z_]*(PASSWORD|PASSWD|PWD)\\s*=\\s*['\"]?[\\w\\W]{6,}",
-      "severity": 1
+      "severity": 1,
+      "tests": {
+        "negative": ["'PASSWORD': '',"]
+      }
     },
     {
       "title": "Generic Authorization",
