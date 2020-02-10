@@ -2,22 +2,22 @@
   "title": "Generic Secrets",
   "checks": [{
       "title": "Generic Key",
-      "regex": "[0-9a-z_]*(key)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-zA-Z]+[0-9a-zA-Z\\.\\-_=]{4,}|[a-zA-Z]+[0-9]+[0-9a-zA-Z\\.\\-_]{4,})",
+      "regex": "[0-9a-z_]*(key)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
       "severity": 1
     },
     {
       "title": "Generic Key",
-      "regex": "[0-9A-Z_]*(KEY)\\s*=\\s*['\"]?([0-9]+[a-zA-Z]+[0-9a-zA-Z\\.\\-_=]{4,}|[a-zA-Z]+[0-9]+[0-9a-zA-Z\\.\\-_]{4,})",
+      "regex": "[0-9a-z_]*(KEY)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
       "severity": 1
     },
     {
       "title": "Generic Token",
-      "regex": "[0-9a-z_]*(token)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-zA-Z]+[0-9a-zA-Z\\.\\-_=]{4,}|[a-zA-Z]+[0-9]+[0-9a-zA-Z\\.\\-_]{6,})",
+      "regex": "[0-9a-z_]*(token)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
       "severity": 1
     },
     {
       "title": "Generic Token",
-      "regex": "[0-9A-Z_]*(TOKEN)\\s*=\\s*['\"]?([0-9]+[a-zA-Z]+[0-9a-zA-Z\\.\\-_=]{4,}|[a-zA-Z]+[0-9]+[0-9a-zA-Z\\.\\-_]{6,})",
+      "regex": "[0-9a-z_]*(TOKEN)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
       "severity": 1
     },
     {
@@ -27,7 +27,7 @@
     },
     {
       "title": "Generic Secret",
-      "regex": "[0-9A-Z_]*(SECRET)\\s*=\\s*['\"]?[\\w\\W]{6,}",
+      "regex": "[0-9a-z_]*(SECRET)\\s*=\\s*['\"]?[\\w\\W]{6,}",
       "severity": 1
     },
     {
@@ -37,12 +37,12 @@
     },
     {
       "title": "Generic Password",
-      "regex": "[0-9A-Z_]*(PASSWORD|PASSWD|PWD)\\s*=\\s*['\"]?[\\w\\W]{6,}",
+      "regex": "[0-9a-z_]*(PASSWORD|PASSWD|PWD)\\s*=\\s*['\"]?[\\w\\W]{6,}",
       "severity": 1
     },
     {
       "title": "Generic Authorization",
-      "regex": "(authorization)\\s*:\\s*(bearer|token|basic)\\s+[0-9a-zA-Z\\.\\-_]{6,}",
+      "regex": "(authorization)\\s*:\\s*(bearer|token|basic)\\s+[0-9a-z\\.\\-_]{6,}",
       "severity": 1
     },
     {

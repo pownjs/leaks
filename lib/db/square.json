@@ -2,7 +2,7 @@
   "title": "Square Secrets",
   "checks": [{
     "title": "Square API Key",
-    "regex": "sq0(atp|csp)-[0-9a-zA-Z\\-_]{22,43}",
+    "regex": "sq0(atp|csp)-[0-9a-z\\-_]{22,43}",
     "severity": 9
   }]
 }
