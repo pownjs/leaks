@@ -15,7 +15,9 @@ describe('db', () => {
 
     it('db checks validate', () => {
         Object.entries(db).forEach(([name, { checks }]) => {
-            checks.forEach(({ title, regex, tests }) => {
+            checks.forEach(({ title, regex, test, tests }) => {
+                assert.ok(!test)
+
                 if (tests) {
                     const { possitive, negative } = tests
 
