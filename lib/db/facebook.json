@@ -3,7 +3,7 @@
   "checks": [{
       "title": "Facebook Client ID",
       "regex": "(facebook|fb)(.{0,20})?['\\\"][0-9]{13,17}['\\\"]",
-      "severity": 6
+      "severity": 1
     },
     {
       "title": "Facebook Access Token",
