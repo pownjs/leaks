@@ -167,7 +167,7 @@ exports.yargs = {
                 }
                 else {
                     if (summary) {
-                        console.warn(`${severity} ${title} ${location}`)
+                        console.warn(`title: ${title} severity: ${severity} index: ${index} location: ${location}`)
                     }
 
                     console.log(find)
