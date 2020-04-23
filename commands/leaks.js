@@ -33,12 +33,6 @@ exports.yargs = {
             default: Infinity
         })
 
-        yargs.options('category', {
-            alias: 'g',
-            type: 'boolean',
-            default: false
-        })
-
         yargs.options('summary', {
             alias: 's',
             type: 'boolean',
@@ -55,7 +49,7 @@ exports.yargs = {
     handler: async(args) => {
         let { header } = args
 
-        const { retry, timeout, requestConcurrency, taskConcurrency, category, summary, json, location } = args
+        const { retry, timeout, requestConcurrency, taskConcurrency, summary, json, location } = args
 
         const headers = {}
 
@@ -162,10 +156,6 @@ exports.yargs = {
                 fetch = fetchFile
             }
 
-            if (category) {
-                console.info(location)
-            }
-
             const data = await fetch(location)
 
             for await (let result of lp.iterateOverSearch(data.toString())) {
@@ -177,12 +167,7 @@ exports.yargs = {
                 }
                 else {
                     if (summary) {
-                        if (category) {
-                            console.warn(`${severity} ${title}`)
-                        }
-                        else {
-                            console.warn(`${severity} ${title} ${location}`)
-                        }
+                        console.warn(`${severity} ${title} ${location}`)
                     }
 
                     console.log(find)
