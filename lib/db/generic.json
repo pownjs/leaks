@@ -22,17 +22,17 @@
     },
     {
       "title": "Generic Secret",
-      "regex": "[0-9a-z_]*(secret)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][\\w\\W]{6,}",
+      "regex": "[0-9a-z_]*(secret)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][^\\s'\"]{6,}['\"]?",
       "severity": 1
     },
     {
       "title": "Generic Secret",
-      "regex": "[0-9a-z_]*(SECRET)\\s*=\\s*['\"]?[\\w\\W]{6,}",
+      "regex": "[0-9a-z_]*(SECRET)\\s*=\\s*['\"]?[^\\s'\"]{6,}['\"]?",
       "severity": 1
     },
     {
       "title": "Generic Password",
-      "regex": "[0-9a-z_]*(password|passwd|pwd)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][\\w\\W]{6,}",
+      "regex": "[0-9a-z_]*(password|passwd|pwd)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][^\\s'\"]{6,}['\"]?",
       "severity": 1,
       "tests": {
         "possitive": ["'password'='secret'"],
@@ -41,7 +41,7 @@
     },
     {
       "title": "Generic Password",
-      "regex": "[0-9a-z_]*(PASSWORD|PASSWD|PWD)\\s*=\\s*['\"]?[\\w\\W]{6,}",
+      "regex": "[0-9a-z_]*(PASSWORD|PASSWD|PWD)\\s*=\\s*['\"]?[^\\s'\"]{6,}['\"]?",
       "severity": 1,
       "tests": {
         "negative": ["'PASSWORD': '',"]
