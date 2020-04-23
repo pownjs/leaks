@@ -4,6 +4,8 @@
   "description": "Pownage guaranteed",
   "main": "lib/index.js",
   "scripts": {
+    "leaks": "POWN_ROOT=. pown-cli leaks",
+    "script": "POWN_ROOT=. pown-cli script",
     "test": "mocha",
     "build": "./scripts/generate-index.sh"
   },
@@ -24,9 +26,17 @@
   "homepage": "https://github.com/pownjs/pown-leaks#readme",
   "devDependencies": {
     "@pown/cli": "^2.20.0",
+    "@pown/script": "^2.10.1",
     "@pown/toolchain": "^2.0.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@pown/async": "^2.7.0"
+  },
+  "pown": {
+    "commands": [
+      "commands/leaks.js"
+    ]
+  },
   "browserify": {
     "transform": [
       [
