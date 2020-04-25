@@ -44,12 +44,24 @@ exports.yargs = {
             type: 'boolean',
             default: false
         })
+
+        yargs.options('unique', {
+            alias: 'u',
+            type: 'boolean',
+            default: false
+        })
+
+        yargs.options('write', {
+            alias: 'w',
+            type: 'string',
+            default: ''
+        })
     },
 
     handler: async(args) => {
         let { header } = args
 
-        const { retry, timeout, requestConcurrency, taskConcurrency, summary, json, location } = args
+        const { retry, timeout, requestConcurrency, taskConcurrency, summary, json, unique, write, location } = args
 
         const headers = {}
 
@@ -140,6 +152,56 @@ exports.yargs = {
             }
         }
 
+        let print = (location, result) => {
+            const { check, index, find } = result
+            const { severity, title, regex } = check
+
+            if (json) {
+                console.log(JSON.stringify({ location, severity, title, index, find, regex: regex.toString() }))
+            }
+            else {
+                if (summary) {
+                    console.warn(`title: ${title} severity: ${severity} index: ${index} location: ${location}`)
+                }
+
+                console.log(find)
+            }
+        }
+
+        if (write) {
+            print = ((print) => {
+                const { createWriteStream } = require('fs')
+
+                const ws = createWriteStream(write)
+
+                return (location, result) => {
+                    const { check, index, find } = result
+                    const { severity, title, regex } = check
+
+                    ws.write(JSON.stringify({ location, severity, title, index, find, regex: regex.toString() }))
+                    ws.write('\n')
+
+                    print(location, result)
+                }
+            })(print)
+        }
+
+        if (unique) {
+            print = ((print) => {
+                const hash = {}
+
+                return (location, result) => {
+                    if (hash[result.find]) {
+                        return
+                    }
+
+                    hash[result.find] = true
+
+                    print(location, result)
+                }
+            })(print)
+        }
+
         const { LeaksPilot } = require('../lib/leaks')
 
         const lp = new LeaksPilot({ db: require('../lib/db') })
@@ -159,19 +221,7 @@ exports.yargs = {
             const data = await fetch(location)
 
             for await (let result of lp.iterateOverSearch(data.toString())) {
-                const { check, index, find } = result
-                const { severity, title, regex } = check
-
-                if (json) {
-                    console.log(JSON.stringify({ location, severity, title, index, find, regex: regex.toString() }))
-                }
-                else {
-                    if (summary) {
-                        console.warn(`title: ${title} severity: ${severity} index: ${index} location: ${location}`)
-                    }
-
-                    console.log(find)
-                }
+                print(location, result)
             }
         })
     }
