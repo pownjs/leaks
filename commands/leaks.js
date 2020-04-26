@@ -51,6 +51,12 @@ exports.yargs = {
             default: false
         })
 
+        yargs.options('embed', {
+            alias: 'e',
+            type: 'boolean',
+            default: false
+        })
+
         yargs.options('write', {
             alias: 'w',
             type: 'string',
@@ -61,7 +67,7 @@ exports.yargs = {
     handler: async(args) => {
         let { header } = args
 
-        const { retry, timeout, requestConcurrency, taskConcurrency, summary, json, unique, write, location } = args
+        const { retry, timeout, requestConcurrency, taskConcurrency, summary, json, unique, embed, write, location } = args
 
         const headers = {}
 
@@ -152,12 +158,18 @@ exports.yargs = {
             }
         }
 
-        let print = (location, result) => {
+        let print = (location, result, text) => {
             const { check, index, find } = result
             const { severity, title, regex } = check
 
             if (json) {
-                console.log(JSON.stringify({ location, severity, title, index, find, regex: regex.toString() }))
+                const object = { location, severity, title, index, find, regex: regex.toString() }
+
+                if (embed) {
+                    object['contents'] = text
+                }
+
+                console.log(JSON.stringify(object))
             }
             else {
                 if (summary) {
@@ -174,14 +186,20 @@ exports.yargs = {
 
                 const ws = createWriteStream(write)
 
-                return (location, result) => {
+                return (location, result, text) => {
                     const { check, index, find } = result
                     const { severity, title, regex } = check
 
-                    ws.write(JSON.stringify({ location, severity, title, index, find, regex: regex.toString() }))
+                    const object = { location, severity, title, index, find, regex: regex.toString() }
+
+                    if (embed) {
+                        object['contents'] = text
+                    }
+
+                    ws.write(JSON.stringify(object))
                     ws.write('\n')
 
-                    print(location, result)
+                    print(location, result, text)
                 }
             })(print)
         }
@@ -190,14 +208,14 @@ exports.yargs = {
             print = ((print) => {
                 const hash = {}
 
-                return (location, result) => {
+                return (location, result, text) => {
                     if (hash[result.find]) {
                         return
                     }
 
                     hash[result.find] = true
 
-                    print(location, result)
+                    print(location, result, text)
                 }
             })(print)
         }
@@ -219,9 +237,10 @@ exports.yargs = {
             }
 
             const data = await fetch(location)
+            const text = data.toString()
 
-            for await (let result of lp.iterateOverSearch(data.toString())) {
-                print(location, result)
+            for await (let result of lp.iterateOverSearch(text)) {
+                print(location, result, text)
             }
         })
     }
