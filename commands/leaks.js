@@ -265,17 +265,21 @@ exports.yargs = {
         const { eachOfLimit } = require('@pown/async/lib/eachOfLimit')
 
         await eachOfLimit(it(), taskConcurrency, async({ type, location }) => {
-            if (verbose) {
-                console.log(`* checking ${location}`)
-            }
-
             let fetch
 
             if (type === 'request') {
+                if (verbose) {
+                    console.log(`* checking request ${location}`)
+                }
+
                 fetch = fetchRequest
             }
             else
             if (type === 'file') {
+                if (verbose) {
+                    console.log(`* checking file ${location}`)
+                }
+
                 fetch = fetchFile
             }
             else {
