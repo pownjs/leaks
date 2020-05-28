@@ -62,12 +62,18 @@ exports.yargs = {
             type: 'string',
             default: ''
         })
+
+        yargs.options('verbose', {
+            alias: 'V',
+            type: 'boolean',
+            default: 'Run in verbose mode'
+        })
     },
 
     handler: async(args) => {
         let { header } = args
 
-        const { retry, timeout, requestConcurrency, taskConcurrency, summary, json, unique, embed, write, location } = args
+        const { retry, timeout, requestConcurrency, taskConcurrency, summary, json, unique, embed, write, verbose, location } = args
 
         const headers = {}
 
@@ -96,8 +102,11 @@ exports.yargs = {
         }
 
         const fs = require('fs')
+        const path = require('path')
         const { promisify } = require('util')
 
+        const statAsync = promisify(fs.stat)
+        const readdirAsync = promisify(fs.readdir)
         const readFileAsync = promisify(fs.readFile)
 
         let scheduler
@@ -153,8 +162,37 @@ exports.yargs = {
             }
         }
         else {
-            it = function*() {
-                yield location
+            if (/^https?:\/\//.test(location)) {
+                it = async function*() {
+                    yield { type: 'request', location }
+                }
+            }
+            else {
+                const stat = await statAsync(location)
+
+                async function* recurseDirectory(directory) {
+                    for (let entry of await readdirAsync(directory, { withFileTypes: true })) {
+                        const pathname = path.join(directory, entry.name)
+
+                        if (entry.isDirectory()) {
+                            yield* recurseDirectory(pathname)
+                        }
+                        else {
+                            yield { type: 'file', location: pathname }
+                        }
+                    }
+                }
+
+                if (stat.isDirectory()) {
+                    it = async function*() {
+                        yield* recurseDirectory(location)
+                    }
+                }
+                else {
+                    it = async function*() {
+                        yield { type: 'file', location }
+                    }
+                }
             }
         }
 
@@ -226,14 +264,22 @@ exports.yargs = {
 
         const { eachOfLimit } = require('@pown/async/lib/eachOfLimit')
 
-        await eachOfLimit(it(), taskConcurrency, async(location) => {
+        await eachOfLimit(it(), taskConcurrency, async({ type, location }) => {
+            if (verbose) {
+                console.log(`* checking ${location}`)
+            }
+
             let fetch
 
-            if (/^https?:\/\//.test(location)) {
+            if (type === 'request') {
                 fetch = fetchRequest
             }
-            else {
+            else
+            if (type === 'file') {
                 fetch = fetchFile
+            }
+            else {
+                throw new Error(`Unknown type ${type}`)
             }
 
             const data = await fetch(location)
