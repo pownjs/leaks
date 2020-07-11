@@ -104,6 +104,7 @@ exports.yargs = {
         const fs = require('fs')
         const path = require('path')
         const { promisify } = require('util')
+        const { makeLineIterator } = require('@pown/cli/lib/line')
 
         const statAsync = promisify(fs.stat)
         const readdirAsync = promisify(fs.readdir)
@@ -145,52 +146,34 @@ exports.yargs = {
             return data
         }
 
-        let it
+        const it = async function*() {
+            const lit = makeLineIterator(location)
 
-        if (location === true) {
-            const process = require('process')
-            const readline = require('readline')
-
-            rl = readline.createInterface({
-                input: process.stdin
-            })
-
-            it = async function*() {
-                for await (let line of rl) {
-                    yield line
-                }
-            }
-        }
-        else {
-            if (/^https?:\/\//.test(location)) {
-                it = async function*() {
-                    yield { type: 'request', location }
-                }
-            }
-            else {
-                const stat = await statAsync(location)
-
-                async function* recurseDirectory(directory) {
-                    for (let entry of await readdirAsync(directory, { withFileTypes: true })) {
-                        const pathname = path.join(directory, entry.name)
-
-                        if (entry.isDirectory()) {
-                            yield* recurseDirectory(pathname)
-                        }
-                        else {
-                            yield { type: 'file', location: pathname }
-                        }
-                    }
-                }
-
-                if (stat.isDirectory()) {
-                    it = async function*() {
-                        yield* recurseDirectory(location)
-                    }
+            for await (let loc of lit()) {
+                if (/^https?:\/\//i.test(loc)) {
+                    yield { type: 'request', location: loc }
                 }
                 else {
-                    it = async function*() {
-                        yield { type: 'file', location }
+                    const stat = await statAsync(loc)
+
+                    async function* recurseDirectory(directory) {
+                        for (let entry of await readdirAsync(directory, { withFileTypes: true })) {
+                            const pathname = path.join(directory, entry.name)
+
+                            if (entry.isDirectory()) {
+                                yield* recurseDirectory(pathname)
+                            }
+                            else {
+                                yield { type: 'file', location: pathname }
+                            }
+                        }
+                    }
+
+                    if (stat.isDirectory()) {
+                        yield* recurseDirectory(loc)
+                    }
+                    else {
+                        yield { type: 'file', location: loc }
                     }
                 }
             }
