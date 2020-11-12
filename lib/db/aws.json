@@ -80,11 +80,6 @@
       "severity": 1
     },
     {
-      "title": "AWS CloudFront",
-      "regex": "[0-9a-z.\\-_]+\\.cloudfront\\.net",
-      "severity": 1
-    },
-    {
       "title": "AWS API Gateway",
       "regex": "[0-9a-z]+\\.execute-api\\.[0-9a-z.\\-_]+\\.amazonaws\\.com",
       "severity": 1
