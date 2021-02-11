@@ -1,5 +1,5 @@
 exports.yargs = {
-    command: 'leaks <location>',
+    command: 'leaks [location]',
     describe: 'Find leaks',
     aliases: ['leak'],
 
@@ -282,11 +282,16 @@ exports.yargs = {
                 throw new Error(`Unknown type ${type}`)
             }
 
-            const data = await fetch(location)
-            const text = data.toString()
+            try {
+                const data = await fetch(location)
+                const text = data.toString()
 
-            for await (let result of lp.iterateOverSearch(text)) {
-                print(location, result, text)
+                for await (let result of lp.iterateOverSearch(text)) {
+                    print(location, result, text)
+                }
+            }
+            catch (e) {
+                console.error(e)
             }
         })
     }
