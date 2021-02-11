@@ -1,6 +1,7 @@
 exports.yargs = {
     command: 'leaks <location>',
     describe: 'Find leaks',
+    aliases: ['leak'],
 
     builder: (yargs) => {
         yargs.options('header', {
