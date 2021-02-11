@@ -5,67 +5,79 @@ exports.yargs = {
 
     builder: (yargs) => {
         yargs.options('header', {
-            alias: 'H',
+            alias: ['H'],
             type: 'string',
             describe: 'Custom header'
         })
 
         yargs.options('retry', {
-            alias: 'r',
+            alias: ['r'],
             type: 'number',
             default: 5
         })
 
         yargs.options('timeout', {
-            alias: 't',
+            alias: ['t'],
             type: 'number',
             default: 30000
         })
 
         yargs.options('task-concurrency', {
-            alias: 'C',
+            alias: ['C'],
             type: 'number',
             default: Infinity
         })
 
         yargs.options('request-concurrency', {
-            alias: 'c',
+            alias: ['c'],
             type: 'number',
             default: Infinity
         })
 
         yargs.options('summary', {
-            alias: 's',
+            alias: ['s'],
             type: 'boolean',
             default: false
         })
 
         yargs.options('json', {
-            alias: 'j',
+            alias: ['j'],
             type: 'boolean',
             default: false
         })
 
         yargs.options('unique', {
-            alias: 'u',
+            alias: ['u'],
             type: 'boolean',
             default: false
         })
 
         yargs.options('embed', {
-            alias: 'e',
+            alias: ['e'],
             type: 'boolean',
             default: false
         })
 
         yargs.options('write', {
-            alias: 'w',
+            alias: ['w'],
             type: 'string',
             default: ''
         })
 
+        yargs.options('filter-title', {
+            alias: ['title'],
+            type: 'string',
+            default: ''
+        })
+
+        yargs.options('filter-severity', {
+            alias: ['severity'],
+            type: 'number',
+            default: 0
+        })
+
         yargs.options('verbose', {
-            alias: 'V',
+            alias: ['V'],
             type: 'boolean',
             default: 'Run in verbose mode'
         })
@@ -74,7 +86,7 @@ exports.yargs = {
     handler: async(args) => {
         let { header } = args
 
-        const { retry, timeout, requestConcurrency, taskConcurrency, summary, json, unique, embed, write, verbose, location } = args
+        const { retry, timeout, requestConcurrency, taskConcurrency, summary, json, unique, embed, write, filterTitle, filterSeverity, verbose, location } = args
 
         const headers = {}
 
@@ -244,7 +256,7 @@ exports.yargs = {
 
         const { LeaksPilot } = require('../lib/leaks')
 
-        const lp = new LeaksPilot({ db: require('../lib/db') })
+        const lp = new LeaksPilot({ db: { ...require('../lib/db'), ...require('../lib/scanners') }, title: filterTitle, severity: filterSeverity })
 
         const { eachOfLimit } = require('@pown/async/lib/eachOfLimit')
 
