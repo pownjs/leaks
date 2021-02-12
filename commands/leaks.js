@@ -65,28 +65,22 @@ exports.yargs = {
         })
 
         yargs.options('filter-title', {
-            alias: ['title'],
+            alias: ['title', 'filter-name', 'name'],
             type: 'string',
             default: ''
         })
 
         yargs.options('filter-severity', {
-            alias: ['severity'],
+            alias: ['severity', 'filter-level', 'level'],
             type: 'number',
             default: 0
-        })
-
-        yargs.options('verbose', {
-            alias: ['V'],
-            type: 'boolean',
-            default: 'Run in verbose mode'
         })
     },
 
     handler: async(args) => {
         let { header } = args
 
-        const { retry, timeout, requestConcurrency, taskConcurrency, summary, json, unique, embed, write, filterTitle, filterSeverity, verbose, location } = args
+        const { retry, timeout, requestConcurrency, taskConcurrency, summary, json, unique, embed, write, filterTitle, filterSeverity, location } = args
 
         const headers = {}
 
@@ -273,17 +267,13 @@ exports.yargs = {
             let fetch
 
             if (type === 'request') {
-                if (verbose) {
-                    console.info(`checking request ${location}`)
-                }
+                console.info(`checking request ${location}`)
 
                 fetch = fetchRequest
             }
             else
             if (type === 'file') {
-                if (verbose) {
-                    console.info(`checking file ${location}`)
-                }
+                console.info(`checking file ${location}`)
 
                 fetch = fetchFile
             }
