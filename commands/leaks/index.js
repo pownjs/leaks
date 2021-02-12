@@ -64,6 +64,13 @@ exports.yargs = {
             default: ''
         })
 
+        yargs.options('tokenizer', {
+            alias: ['z'],
+            type: 'string',
+            choices: ['none', 'code-line'],
+            default: 'none'
+        })
+
         yargs.options('filter-title', {
             alias: ['title', 'filter-name', 'name'],
             type: 'string',
@@ -80,7 +87,7 @@ exports.yargs = {
     handler: async(args) => {
         let { header } = args
 
-        const { retry, timeout, requestConcurrency, taskConcurrency, summary, json, unique, embed, write, filterTitle, filterSeverity, location } = args
+        const { retry, timeout, requestConcurrency, taskConcurrency, summary, json, unique, embed, write, tokenizer, filterTitle, filterSeverity, location } = args
 
         const headers = {}
 
@@ -117,16 +124,9 @@ exports.yargs = {
         const readdirAsync = promisify(fs.readdir)
         const readFileAsync = promisify(fs.readFile)
 
-        let scheduler
+        const { Scheduler } = require('@pown/request/lib/scheduler')
 
-        try {
-            const { Scheduler } = require('@pown/request/lib/scheduler')
-
-            scheduler = new Scheduler({ maxConcurrent: requestConcurrency })
-        }
-        catch (e) {
-            // pass
-        }
+        const scheduler = new Scheduler({ maxConcurrent: requestConcurrency })
 
         const options = {
             scheduler,
@@ -136,12 +136,6 @@ exports.yargs = {
         }
 
         const fetchRequest = async(location) => {
-            if (!scheduler) {
-                console.warn('@pown/request not available')
-
-                return ''
-            }
-
             const { responseBody } = await scheduler.request({ ...options, uri: location })
 
             return responseBody
@@ -257,9 +251,26 @@ exports.yargs = {
             })(print)
         }
 
-        const { LeaksPilot } = require('../lib/leaks')
+        const { LeaksPilot } = require('../../lib/leaks')
 
-        const lp = new LeaksPilot({ db: { ...require('../lib/db'), ...require('../lib/scanners') }, title: filterTitle, severity: filterSeverity })
+        const lp = new LeaksPilot({ db: { ...require('../../lib/db'), ...require('../../lib/scanners') }, title: filterTitle, severity: filterSeverity })
+
+        let iterator
+
+        if (tokenizer === 'none') {
+            iterator = (...args) => {
+                return lp.iterateOverSearch(...args)
+            }
+        }
+        else
+        if (tokenizer === 'code-line') {
+            iterator = (...args) => {
+                return lp.iterateOverSearchPerCodeLine(...args)
+            }
+        }
+        else {
+            throw new Error(`Unrecognized tokenizer`)
+        }
 
         const { eachOfLimit } = require('@pown/async/lib/eachOfLimit')
 
@@ -285,7 +296,7 @@ exports.yargs = {
                 const data = await fetch(location)
                 const text = data.toString()
 
-                for await (let result of lp.iterateOverSearch(text)) {
+                for await (let result of iterator(text)) {
                     print(location, result, text)
                 }
             }

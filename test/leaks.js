@@ -62,7 +62,7 @@ describe('LeaksPilot', () => {
         })
     })
 
-    describe('#iterateOverSearchPerLine', () => {
+    describe('#iterateOverSearchPerCodeLine', () => {
         it('must produce results with groups', () => {
             const db = {
                 test: {
@@ -76,7 +76,7 @@ describe('LeaksPilot', () => {
 
             const results = []
 
-            for (const match of lp.iterateOverSearchPerLine('a\nb\nsecret1\nc\nsecret2\nx\nsecret3\ny\nz')) {
+            for (const match of lp.iterateOverSearchPerCodeLine('a\nb\nsecret1\nc\nsecret2\nx\nsecret3\ny\nz')) {
                 results.push(match)
             }
 
@@ -98,7 +98,7 @@ describe('LeaksPilot', () => {
 
             const results = []
 
-            for (const match of lp.iterateOverSearchPerLine('a;b;secret1;c;secret2;x;secret3;y;z')) {
+            for (const match of lp.iterateOverSearchPerCodeLine('a;b;secret1;c;secret2;x;secret3;y;z')) {
                 results.push(match)
             }
 
