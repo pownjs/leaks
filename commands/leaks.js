@@ -167,7 +167,16 @@ exports.yargs = {
                     yield { type: 'request', location: loc }
                 }
                 else {
-                    const stat = await statAsync(loc)
+                    let stat
+
+                    try {
+                        stat = await statAsync(loc)
+                    }
+                    catch (e) {}
+
+                    if (!stat) {
+                        continue
+                    }
 
                     async function* recurseDirectory(directory) {
                         for (let entry of await readdirAsync(directory, { withFileTypes: true })) {
@@ -265,7 +274,7 @@ exports.yargs = {
 
             if (type === 'request') {
                 if (verbose) {
-                    console.log(`* checking request ${location}`)
+                    console.info(`checking request ${location}`)
                 }
 
                 fetch = fetchRequest
@@ -273,7 +282,7 @@ exports.yargs = {
             else
             if (type === 'file') {
                 if (verbose) {
-                    console.log(`* checking file ${location}`)
+                    console.info(`checking file ${location}`)
                 }
 
                 fetch = fetchFile
