@@ -25,13 +25,14 @@
   },
   "homepage": "https://github.com/pownjs/pown-leaks#readme",
   "devDependencies": {
-    "@pown/cli": "^2.25.3",
-    "@pown/script": "^2.12.0",
+    "@pown/cli": "^2.27.0",
+    "@pown/script": "^2.14.0",
     "@pown/toolchain": "^2.0.0"
   },
   "dependencies": {
     "@pown/async": "^2.11.0",
-    "@pown/request": "^2.16.0"
+    "@pown/regexp": "^2.0.0",
+    "@pown/request": "^2.19.0"
   },
   "pown": {
     "commands": [
