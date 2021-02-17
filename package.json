@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@pown/async": "^2.11.0",
-    "@pown/regexp": "^2.0.0",
+    "@pown/regexp": "^2.0.1",
     "@pown/request": "^2.19.0"
   },
   "pown": {
