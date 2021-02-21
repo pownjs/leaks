@@ -2,12 +2,15 @@
   "title": "Generic Secrets",
   "checks": [{
       "title": "Generic Key",
-      "regex": "[0-9a-z_]*(key)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
-      "severity": 1
+      "regex": "[0-9a-z_]*(?<!(site|license)[_-]?)(key)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
+      "severity": 1,
+      "tests": {
+        "negative": ["'sitekey':  '6LewHloUAAAAAKdXnqjicyOfUNBxw-jH1jK6oNKA'"]
+      }
     },
     {
       "title": "Generic Key",
-      "regex": "[0-9a-z_]*(key)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
+      "regex": "[0-9a-z_]*(?<!(site|license)[_-]?)(key)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
       "severity": 1
     },
     {
