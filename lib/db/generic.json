@@ -62,12 +62,14 @@
     {
       "title": "Sensitive URL Credentials",
       "severity": 7,
-      "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\"]+?:[^\\s\\{\\}\\(\\)\\<\\>\\/%]+?@[^\\s'\"\\)]+"
+      "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\"]+?:[^\\s\\{\\}\\(\\)\\<\\>\\/%]+?@[^\\s'\"\\)]+",
+      "regexFilter": "(sentry\\.io\\/)"
     },
     {
       "title": "Sensitive URL",
       "severity": 5,
       "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\"]+?@[^\\s'\"\\)]+",
+      "regexFilter": "(sentry\\.io\\/)",
       "tests": {
         "possitive": ["http://user@acme.com", "ftp://user@acme.com", "http://user:password@acme.com"],
         "negative": ["https://test.com\"@acme.com"]

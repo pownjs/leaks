@@ -27,18 +27,22 @@ describe('db', () => {
                     compileCheck(regex)
 
                     if (possitive) {
-                        const { regex: r } = compileCheck(check)
+                        const { regex: r, regexFilter: rf } = compileCheck(check)
 
                         possitive.forEach((test, index) => {
-                            assert.ok(r.test(test), `${title} validates against possitive test ${index}`)
+                            const result = r.test(test) && (rf ? !rf.test(test) : true)
+
+                            assert.ok(result, `${JSON.stringify(title)} validates against possitive test ${JSON.stringify(test)} at index ${index}`)
                         })
                     }
 
                     if (negative) {
-                        const { regex: r } = compileCheck(check)
+                        const { regex: r, regexFilter: rf } = compileCheck(check)
 
                         negative.forEach((test, index) => {
-                            assert.ok(!r.test(test), `${title} validates against negative test ${index}`)
+                            const result = r.test(test) && (rf ? !rf.test(test) : true)
+
+                            assert.ok(!result, `${JSON.stringify(title)} validates against negative test ${JSON.stringify(test)} at index ${index}`)
                         })
                     }
                 }

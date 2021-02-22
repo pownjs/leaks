@@ -3,7 +3,6 @@
   "checks": [{
       "title": "AWS Client ID",
       "regex": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
-      "flags": "",
       "severity": 6,
       "tests": {
         "negative": [
