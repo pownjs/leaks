@@ -2,44 +2,44 @@
   "title": "Generic Secrets",
   "checks": [{
       "title": "Generic Key",
-      "regex": "[0-9a-z_]*(?<!(site|license)[_-]?)(key)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
       "severity": 1,
+      "regex": "[0-9a-z_]*(?<!(site|license)[_-]?)(key)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
       "tests": {
         "negative": ["'sitekey':  '6LewHloUAAAAAKdXnqjicyOfUNBxw-jH1jK6oNKA'"]
       }
     },
     {
       "title": "Generic Key",
-      "regex": "[0-9a-z_]*(?<!(site|license)[_-]?)(key)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
-      "severity": 1
-    },
-    {
-      "title": "Generic Token",
-      "regex": "[0-9a-z_]*(?<!(csrf)[_-]?)(token)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
-      "severity": 1
-    },
-    {
-      "title": "Generic Token",
-      "regex": "[0-9a-z_]*(?<!(csrf)[_-]?)(token)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
       "severity": 1,
+      "regex": "[0-9a-z_]*(?<!(site|license)[_-]?)(key)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})"
+    },
+    {
+      "title": "Generic Token",
+      "severity": 1,
+      "regex": "[0-9a-z_]*(?<!(csrf)[_-]?)(token)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})"
+    },
+    {
+      "title": "Generic Token",
+      "severity": 1,
+      "regex": "[0-9a-z_]*(?<!(csrf)[_-]?)(token)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
       "tests": {
         "negative": ["_csrf_token = '7919339144ed6fee19153e81508ec9b52bb8302b14c4e60844032feadc9bb5095f62e0620e8d3ad886e8af759d3d9858'"]
       }
     },
     {
       "title": "Generic Secret",
-      "regex": "[0-9a-z_]*(secret)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][^\\s'\"]{6,}['\"]?",
-      "severity": 1
+      "severity": 1,
+      "regex": "[0-9a-z_]*(secret)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][^\\s'\"]{6,}['\"]?"
     },
     {
       "title": "Generic Secret",
-      "regex": "[0-9a-z_]*(secret)\\s*=\\s*['\"]?[^\\s'\"]{6,}['\"]?",
-      "severity": 1
+      "severity": 1,
+      "regex": "[0-9a-z_]*(secret)\\s*=\\s*['\"]?[^\\s'\"]{6,}['\"]?"
     },
     {
       "title": "Generic Password",
-      "regex": "[0-9a-z_]*(password|passwd|pwd)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][^\\s'\"]{6,}['\"]?",
       "severity": 1,
+      "regex": "[0-9a-z_]*(password|passwd|pwd)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][^\\s'\"]{6,}['\"]?",
       "tests": {
         "possitive": ["'password'='secret'"],
         "negative": ["'PASSWORD': '',"]
@@ -47,8 +47,8 @@
     },
     {
       "title": "Generic Password",
-      "regex": "[0-9a-z_]*(PASSWORD|PASSWD|PWD)\\s*=\\s*['\"]?[^\\s'\"]{6,}['\"]?",
       "severity": 1,
+      "regex": "[0-9a-z_]*(PASSWORD|PASSWD|PWD)\\s*=\\s*['\"]?[^\\s'\"]{6,}['\"]?",
       "tests": {
         "possitive": ["PASSWORD=secret"],
         "negative": ["'PASSWORD': '',"]
@@ -56,18 +56,18 @@
     },
     {
       "title": "Generic Authorization",
-      "regex": "(authorization)\\s*:\\s*(bearer|token|basic)\\s+[0-9a-z\\.\\-_]{6,}",
-      "severity": 1
+      "severity": 1,
+      "regex": "(authorization)\\s*:\\s*(bearer|token|basic)\\s+[0-9a-z\\.\\-_]{6,}"
     },
     {
       "title": "Sensitive URL Credentials",
-      "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\"]+?:[^\\s\\{\\}\\(\\)\\<\\>\\/%]+?@[^\\s'\"\\)]+",
-      "severity": 7
+      "severity": 7,
+      "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\"]+?:[^\\s\\{\\}\\(\\)\\<\\>\\/%]+?@[^\\s'\"\\)]+"
     },
     {
       "title": "Sensitive URL",
-      "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\"]+?@[^\\s'\"\\)]+",
       "severity": 5,
+      "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\"]+?@[^\\s'\"\\)]+",
       "tests": {
         "possitive": ["http://user@acme.com", "ftp://user@acme.com", "http://user:password@acme.com"],
         "negative": ["https://test.com\"@acme.com"]
