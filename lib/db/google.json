@@ -13,7 +13,7 @@
     {
       "title": "Google Oauth ID",
       "regex": "[0-9]+-[0-9a-z_]{32}\\.apps\\.googleusercontent\\.com",
-      "severity": 5
+      "severity": 1
     }
   ]
 }
