@@ -3,10 +3,13 @@
   "checks": [{
       "title": "AWS Client ID",
       "regex": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+      "flags": "",
       "severity": 6,
       "tests": {
+        "note": "The flag is '' to avoid capturing the false possitives bellow",
         "negative": [
-          "aIZaJ1Wr8c3Cc1Irkmcl1BfXha8CtUy6TEmO2r2"
+          "A3TxNQshlGLAnE44zCIL",
+          "AKIArQDJAMcArgBiAGMA"
         ]
       }
     },
@@ -64,12 +67,17 @@
       "severity": 1
     },
     {
+      "title": "AWS ElasticSearch",
+      "regex": "[0-9a-z.\\-_]+\\.es\\.amazonaws\\.com",
+      "severity": 1
+    },
+    {
       "title": "AWS S3 Endpoint",
       "regex": "[0-9a-z.\\-_]+\\.s3\\.amazonaws\\.com",
       "severity": 1
     },
     {
-      "title": "AWS S3 Endpoint",
+      "title": "AWS S3 Website Endpoint",
       "regex": "[0-9a-z.\\-_]+\\.s3-website[0-9a-z.\\-_]+\\.amazonaws\\.com",
       "severity": 1
     },

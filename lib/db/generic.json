@@ -11,19 +11,28 @@
     {
       "title": "Generic Key",
       "severity": 1,
-      "regex": "[0-9a-z_]*(?<!(site|license)[_-]?)(key)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})"
-    },
-    {
-      "title": "Generic Token",
-      "severity": 1,
-      "regex": "[0-9a-z_]*(?<!(csrf)[_-]?)(token)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})"
-    },
-    {
-      "title": "Generic Token",
-      "severity": 1,
-      "regex": "[0-9a-z_]*(?<!(csrf)[_-]?)(token)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
+      "regex": "[0-9a-z_]*(?<!(adblock|site|license)[_-]?)(key)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
       "tests": {
-        "negative": ["_csrf_token = '7919339144ed6fee19153e81508ec9b52bb8302b14c4e60844032feadc9bb5095f62e0620e8d3ad886e8af759d3d9858'"]
+        "negative": ["adblockkey=\"MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKX74ixpzVyXbJprcLfbH4psP4\""]
+      }
+    },
+    {
+      "title": "Generic Token",
+      "severity": 1,
+      "regex": "[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
+      "negative": [
+        "\"theme_token\":\"1L5NmeJ_gliOt8LvE7G2fFaT-_YQ0bv-IcXk_o8q9\"",
+        "\"theme_token\":\"1L5NmeJ_gliOt8LvE7G2fFaT-_YQ0bv-IcXk_o8q9-A\""
+      ]
+    },
+    {
+      "title": "Generic Token",
+      "severity": 1,
+      "regex": "[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
+      "tests": {
+        "negative": [
+          "_csrf_token = '7919339144ed6fee19153e81508ec9b52bb8302b14c4e60844032feadc9bb5095f62e0620e8d3ad886e8af759d3d9858'"
+        ]
       }
     },
     {

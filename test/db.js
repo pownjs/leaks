@@ -1,7 +1,6 @@
 const assert = require('assert')
 
 const db = require('../lib/db')
-const { compileCheck } = require('../lib/helpers')
 
 describe('db', () => {
     it('db is ok', () => {
@@ -17,17 +16,15 @@ describe('db', () => {
     it('db checks validate', () => {
         Object.entries(db).forEach(([name, { checks }]) => {
             checks.forEach((check) => {
-                const { title, regex, test, tests = [] } = check
+                const { title, test, tests = [] } = check
 
                 assert.ok(!test)
 
                 if (tests) {
                     const { possitive, negative } = tests
 
-                    compileCheck(regex)
-
                     if (possitive) {
-                        const { regex: r, regexFilter: rf } = compileCheck(check)
+                        const { regex: r, regexFilter: rf } = check
 
                         possitive.forEach((test, index) => {
                             const result = r.test(test) && (rf ? !rf.test(test) : true)
@@ -37,7 +34,7 @@ describe('db', () => {
                     }
 
                     if (negative) {
-                        const { regex: r, regexFilter: rf } = compileCheck(check)
+                        const { regex: r, regexFilter: rf } = check
 
                         negative.forEach((test, index) => {
                             const result = r.test(test) && (rf ? !rf.test(test) : true)
