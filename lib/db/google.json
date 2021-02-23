@@ -8,7 +8,7 @@
     {
       "title": "Google API Key",
       "regex": "AIza[0-9a-z\\-_]{35}",
-      "severity": 7
+      "severity": 4
     },
     {
       "title": "Google Oauth ID",
