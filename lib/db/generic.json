@@ -49,15 +49,17 @@
       "title": "Generic Password",
       "severity": 1,
       "regex": "[0-9a-z_]*(password|passwd|pwd)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][^\\s'\"]{6,}['\"]?",
+      "entropy": 3.3,
       "tests": {
         "possitive": ["'password'='secret'"],
-        "negative": ["'PASSWORD': '',"]
+        "negative": ["'PASSWORD': '',", "\"passwd\": \"^1.0.0\""]
       }
     },
     {
       "title": "Generic Password",
       "severity": 1,
       "regex": "[0-9a-z_]*(PASSWORD|PASSWD|PWD)\\s*=\\s*['\"]?[^\\s'\"]{6,}['\"]?",
+      "entropy": 3.3,
       "tests": {
         "possitive": ["PASSWORD=secret"],
         "negative": ["'PASSWORD': '',"]
@@ -72,13 +74,13 @@
       "title": "Sensitive URL Credentials",
       "severity": 7,
       "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\"]+?:[^\\s\\{\\}\\(\\)\\<\\>\\/%]+?@[^\\s'\"\\)]+",
-      "regexFilter": "(sentry\\.io\\/)"
+      "filterRegex": "(sentry\\.io\\/)"
     },
     {
       "title": "Sensitive URL",
       "severity": 5,
       "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\"]+?@[^\\s'\"\\)]+",
-      "regexFilter": "(sentry\\.io\\/)",
+      "filterRegex": "(sentry\\.io\\/)",
       "tests": {
         "possitive": ["http://user@acme.com", "ftp://user@acme.com", "http://user:password@acme.com"],
         "negative": ["https://test.com\"@acme.com"]

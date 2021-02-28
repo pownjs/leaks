@@ -1,6 +1,7 @@
 const assert = require('assert')
 
 const { LeaksPilot } = require('../lib/leaks')
+const { compileCollection } = require('../lib/helpers')
 
 describe('LeaksPilot', () => {
     describe('#iterateOverSearch', () => {
@@ -20,11 +21,11 @@ describe('LeaksPilot', () => {
 
         it('must produce results', () => {
             const db = {
-                test: {
+                test: compileCollection({
                     checks: [{
                         regex: /secret/
                     }]
-                }
+                })
             }
 
             const lp = new LeaksPilot({ db })
@@ -41,11 +42,11 @@ describe('LeaksPilot', () => {
 
         it('must produce results with groups', () => {
             const db = {
-                test: {
+                test: compileCollection({
                     checks: [{
                         regex: /secret\d+/
                     }]
-                }
+                })
             }
 
             const lp = new LeaksPilot({ db })
@@ -65,11 +66,11 @@ describe('LeaksPilot', () => {
     describe('#iterateOverSearchPerCodeLine', () => {
         it('must produce results with groups', () => {
             const db = {
-                test: {
+                test: compileCollection({
                     checks: [{
                         regex: /secret\d+/
                     }]
-                }
+                })
             }
 
             const lp = new LeaksPilot({ db })
@@ -87,11 +88,11 @@ describe('LeaksPilot', () => {
 
         it('must produce results with groups', () => {
             const db = {
-                test: {
+                test: compileCollection({
                     checks: [{
                         regex: /secret\d+/
                     }]
-                }
+                })
             }
 
             const lp = new LeaksPilot({ db })
