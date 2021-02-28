@@ -4,7 +4,7 @@
 
 # Pown Leaks
 
-Pown Leaks is an active database of regular expressions that help you search for leaks, such as passwords, keys, tokens and other sensitive strings in files.
+Pown Leaks is a comprehensive database of regular expressions that help you search for leaks, such as passwords, keys, tokens and other sensitive strings in files.
 
 ## Credits
 
