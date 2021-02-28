@@ -278,14 +278,10 @@ exports.yargs = {
             let fetch
 
             if (type === 'request') {
-                console.info(`checking request ${location}`)
-
                 fetch = fetchRequest
             }
             else
             if (type === 'file') {
-                console.info(`checking file ${location}`)
-
                 fetch = fetchFile
             }
             else {
