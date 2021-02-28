@@ -190,11 +190,11 @@ exports.yargs = {
         }
 
         let print = (location, result, text) => {
-            const { check, index, find } = result
+            const { check, index, exact, find } = result
             const { severity, title, regex } = check
 
             if (json) {
-                const object = { location, severity, title, index, find, regex: regex.toString() }
+                const object = { location, severity, title, index, exact, find, regex: regex.toString() }
 
                 if (embed) {
                     object['contents'] = text
@@ -221,7 +221,7 @@ exports.yargs = {
                     const { check, index, find } = result
                     const { severity, title, regex } = check
 
-                    const object = { location, severity, title, index, find, regex: regex.toString() }
+                    const object = { location, severity, title, index, exact, find, regex: regex.toString() }
 
                     if (embed) {
                         object['contents'] = text
