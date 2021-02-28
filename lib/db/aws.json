@@ -22,11 +22,11 @@
     },
     {
       "title": "AWS ARN",
-      "regex": "arn:aws:[a-z0-9-]+:[a-z]{2}-[a-z]+-[0-9]+:[0-9]+(?<!(123456789012)):.+",
+      "regex": "arn:aws:[a-z0-9-]+:[a-z]{2}-[a-z]+-[0-9]+:[0-9]+(?<!(123456789012|000000000000)):.+",
       "severity": 1,
       "tests": {
         "possitive": ["arn:aws:dynamodb:eu-west-1:135689:table"],
-        "negative": ["arn:aws:s3:::", "arn:aws:eks:us-east-1:123456789012:cluster/my-cluster-01"]
+        "negative": ["arn:aws:s3:::", "arn:aws:iam::*ACCOUNT_ID*:role/*ROLE*", "arn:aws:eks:us-east-1:123456789012:cluster/my-cluster-01", "arn:aws:sns:us-east-1:000000000000:topic-name"]
       }
     },
     {
