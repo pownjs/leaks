@@ -4,9 +4,9 @@
       "title": "AWS Client ID",
       "regex": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
       "flags": "",
+      "note": "The flag is '' to avoid capturing the false possitives bellow",
       "severity": 6,
       "tests": {
-        "note": "The flag is '' to avoid capturing the false possitives bellow",
         "negative": ["A3TxNQshlGLAnE44zCIL", "AKIArQDJAMcArgBiAGMA"]
       }
     },
