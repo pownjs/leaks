@@ -48,20 +48,20 @@
     {
       "title": "Generic Password",
       "severity": 1,
-      "regex": "[0-9a-z_]*(password|passwd|pwd)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][^\\s'\"]{6,}['\"]?",
-      "entropy": 3.3,
+      "regex": "[0-9a-z_]*(password|passwd|pwd)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"](?<exact>[^\\s'\"]{6,})['\"]?",
+      "entropy": 20,
       "tests": {
-        "possitive": ["'password'='secret'"],
+        "possitive": ["'password'='secret123'"],
         "negative": ["'PASSWORD': '',", "\"passwd\": \"^1.0.0\""]
       }
     },
     {
       "title": "Generic Password",
       "severity": 1,
-      "regex": "[0-9a-z_]*(PASSWORD|PASSWD|PWD)\\s*=\\s*['\"]?[^\\s'\"]{6,}['\"]?",
-      "entropy": 3.3,
+      "regex": "[0-9a-z_]*(password|passwd|pwd)\\s*=\\s*['\"]?(?<exact>[^\\s'\"]{6,})['\"]?",
+      "entropy": 20,
       "tests": {
-        "possitive": ["PASSWORD=secret"],
+        "possitive": ["PASSWORD=secret123"],
         "negative": ["'PASSWORD': '',"]
       }
     },
