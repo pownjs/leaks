@@ -68,7 +68,7 @@ exports.yargs = {
             alias: ['z'],
             type: 'string',
             choices: ['none', 'code-line'],
-            default: 'none'
+            default: 'code-line'
         })
 
         yargs.options('filter-title', {
