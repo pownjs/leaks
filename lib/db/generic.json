@@ -4,6 +4,7 @@
       "title": "Generic Key",
       "severity": 1,
       "regex": "[0-9a-z_]*(?<!(site|license|bugsnag|recaptcha)[_-]?)(key)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
+      "note": "TODO: This is slow, requires improvements.",
       "tests": {
         "negative": ["'sitekey':  '6LewHloUAAAAAKdXnqjicyOfUNBxw-jH1jK6oNKA'", "bugsnagKey: \"5792c4d9ba21d5d5dc922a4b2586d090\"", "reCaptchaKey\":\"6Lcw5PwUAAAAAEZ9dIIezn_kchXS0Ycqdwt"]
       }
@@ -12,6 +13,7 @@
       "title": "Generic Key",
       "severity": 1,
       "regex": "[0-9a-z_]*(?<!(adblock|site|license|bugsnag|recaptcha)[_-]?)(key)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
+      "note": "TODO: This is slow, requires improvements.",
       "tests": {
         "negative": ["adblockkey=\"MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKX74ixpzVyXbJprcLfbH4psP4\""]
       }
@@ -20,6 +22,7 @@
       "title": "Generic Token",
       "severity": 1,
       "regex": "[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
+      "note": "TODO: This is slow, requires improvements.",
       "negative": [
         "\"theme_token\":\"1L5NmeJ_gliOt8LvE7G2fFaT-_YQ0bv-IcXk_o8q9\"",
         "\"theme_token\":\"1L5NmeJ_gliOt8LvE7G2fFaT-_YQ0bv-IcXk_o8q9-A\""
@@ -29,6 +32,7 @@
       "title": "Generic Token",
       "severity": 1,
       "regex": "[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
+      "note": "TODO: This is slow, requires improvements.",
       "tests": {
         "negative": [
           "_csrf_token = '7919339144ed6fee19153e81508ec9b52bb8302b14c4e60844032feadc9bb5095f62e0620e8d3ad886e8af759d3d9858'"
@@ -38,17 +42,20 @@
     {
       "title": "Generic Secret",
       "severity": 1,
-      "regex": "[0-9a-z_]*(secret)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][^\\s'\"]{6,}['\"]?"
+      "regex": "[0-9a-z_]*(secret)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][^\\s'\"]{6,}['\"]?",
+      "note": "TODO: This is slow, requires improvements."
     },
     {
       "title": "Generic Secret",
       "severity": 1,
-      "regex": "[0-9a-z_]*(secret)\\s*=\\s*['\"]?[^\\s'\"]{6,}['\"]?"
+      "regex": "[0-9a-z_]*(secret)\\s*=\\s*['\"]?[^\\s'\"]{6,}['\"]?",
+      "note": "TODO: This is slow, requires improvements."
     },
     {
       "title": "Generic Password",
       "severity": 1,
       "regex": "[0-9a-z_]*(password|passwd|pwd)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"](?<exact>[^\\s'\"]{6,})['\"]?",
+      "note": "TODO: This is slow, requires improvements.",
       "entropy": 20,
       "tests": {
         "possitive": ["'password'='secret123'"],
@@ -59,6 +66,7 @@
       "title": "Generic Password",
       "severity": 1,
       "regex": "[0-9a-z_]*(password|passwd|pwd)\\s*=\\s*['\"]?(?<exact>[^\\s'\"]{6,})['\"]?",
+      "note": "TODO: This is slow, requires improvements.",
       "entropy": 20,
       "tests": {
         "possitive": ["PASSWORD=secret123"],

@@ -31,32 +31,39 @@
     },
     {
       "title": "AWS EC2 Internal",
-      "regex": "[0-9a-z.\\-_]+\\.compute(-1)?\\.internal",
-      "severity": 1
+      "regex": "domu-[\\w\\.-]+\\.compute(-1)?\\.internal",
+      "severity": 1,
+      "tests": {
+        "possitive": ["domu-12-31-39-09-a6-74.compute-1.internal"]
+      }
     },
     {
       "title": "AWS EC2 External",
-      "regex": "ec2-[0-9a-z.\\-_]+\\.compute(-1)?\\.amazonaws\\.com",
+      "regex": "ec2-[\\w\\.-]+\\.compute(-1)?\\.amazonaws\\.com",
       "severity": 1
     },
     {
       "title": "AWS ELB",
       "regex": "[0-9a-z.\\-_]+\\.elb\\.amazonaws\\.com",
+      "note": "TODO: This is slow, requires improvements.",
       "severity": 1
     },
     {
       "title": "AWS ELB",
       "regex": "[0-9a-z.\\-_]+\\.elb\\.[0-9a-z.\\-_]+\\.amazonaws\\.com",
+      "note": "TODO: This is slow, requires improvements.",
       "severity": 1
     },
     {
       "title": "AWS RDS",
       "regex": "[0-9a-z.\\-_]+\\.rds\\.amazonaws\\.com",
+      "note": "TODO: This is slow, requires improvements.",
       "severity": 1
     },
     {
       "title": "AWS ElasticCache",
       "regex": "[0-9a-z.\\-_]+\\.cache\\.amazonaws\\.com",
+      "note": "TODO: This is slow, requires improvements.",
       "severity": 1
     },
     {
@@ -67,11 +74,13 @@
     {
       "title": "AWS S3 Endpoint",
       "regex": "[0-9a-z.\\-_]+\\.s3\\.amazonaws\\.com",
+      "note": "TODO: This is slow, requires improvements.",
       "severity": 1
     },
     {
       "title": "AWS S3 Website Endpoint",
       "regex": "[0-9a-z.\\-_]+\\.s3-website[0-9a-z.\\-_]+\\.amazonaws\\.com",
+      "note": "TODO: This is slow, requires improvements.",
       "severity": 1
     },
     {
@@ -82,6 +91,7 @@
     {
       "title": "AWS API Gateway",
       "regex": "[0-9a-z]+\\.execute-api\\.[0-9a-z.\\-_]+\\.amazonaws\\.com",
+      "note": "TODO: This is slow, requires improvements.",
       "severity": 1
     }
   ]
