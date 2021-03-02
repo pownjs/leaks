@@ -48,9 +48,11 @@ jobs:
         run: npm install
       - name: Generate readme
         run: |
-          cat README.md.tpl | USAGE=`npm run start --silent -- --help` awk -v USAGE="$USAGE" '{ gsub("{{usage}}",USAGE) }1'
+          cat README.md.tpl | USAGE=`npm run start --silent -- --help` awk -v USAGE="$USAGE" '{ gsub("{{usage}}",USAGE) }1' > README.md
       - name: Commit results
         run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "Github Action"
           git commit README.md -m 'Re-build README.Rmd' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
 
