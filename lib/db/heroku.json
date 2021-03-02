@@ -2,7 +2,8 @@
   "title": "Heroku Secrets",
   "checks": [{
     "title": "Heroku API Key",
+    "severity": 9,
     "regex": "heroku(.{0,20})?['\"][0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}['\"]",
-    "severity": 9
+    "safe": false
   }]
 }

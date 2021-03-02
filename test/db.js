@@ -1,4 +1,5 @@
 const assert = require('assert')
+const safeRegex = require('safe-regex')
 
 const db = require('../lib/db')
 
@@ -18,9 +19,9 @@ describe('db', () => {
 
         Object.entries(db).forEach(([name, { checks }]) => {
             checks.forEach((check) => {
-                const { title, test, tests = [] } = check
+                const { title, regex, test, tests = [], safe = true } = check
 
-                assert.ok(!test)
+                assert.ok(!test, `${JSON.stringify(title)} has incorrect test declaration`)
 
                 if (tests) {
                     const { possitive, negative } = tests
@@ -43,6 +44,10 @@ describe('db', () => {
 
                             assert.ok(!result, `${JSON.stringify(title)} validates against negative test ${JSON.stringify(test)} at index ${index}`)
                         })
+                    }
+
+                    if (safe) {
+                        assert.ok(safeRegex(regex), `${JSON.stringify(title)} validates safe regex test ${regex.toString()}`)
                     }
                 }
             })

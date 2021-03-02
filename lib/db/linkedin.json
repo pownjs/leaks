@@ -2,13 +2,15 @@
   "title": "LinkedIn Secrets",
   "checks": [{
       "title": "LinkedIn Client ID",
+      "severity": 6,
       "regex": "linkedin(.{0,20})?['\\\"][0-9a-z]{12}['\\\"]",
-      "severity": 6
+      "safe": false
     },
     {
       "title": "LinkedIn Secret Key",
+      "severity": 7,
       "regex": "linkedin(.{0,20})?['\\\"][0-9a-z]{16}['\\\"]",
-      "severity": 7
+      "safe": false
     }
   ]
 }
