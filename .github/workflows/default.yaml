@@ -54,7 +54,7 @@ jobs:
           git commit README.md -m 'Re-build README.Rmd' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
 
-  publish
+  publish:
     name: Publish
     runs-on: ubuntu-latest
     steps:
