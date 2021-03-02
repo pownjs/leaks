@@ -189,6 +189,8 @@ exports.yargs = {
             }
         }
 
+        const { calculateEntropy } = require('../../lib/entropy')
+
         let print = (location, result, text) => {
             const { check, index, exact, find } = result
             const { severity, title, regex } = check
@@ -204,7 +206,9 @@ exports.yargs = {
             }
             else {
                 if (!silent) {
-                    console.warn(`title: ${title}, severity: ${severity}, index: ${index}, location: ${location}`)
+                    const entropy = Math.round(calculateEntropy(exact))
+
+                    console.warn(`title: ${title}, severity: ${severity}, index: ${index}, entropy: ${entropy}, location: ${location}`)
                 }
 
                 console.log(find)
