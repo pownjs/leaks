@@ -34,7 +34,7 @@ exports.yargs = {
             default: Infinity
         })
 
-        yargs.options('summary', {
+        yargs.options('silent', {
             alias: ['s'],
             type: 'boolean',
             default: false
@@ -87,7 +87,7 @@ exports.yargs = {
     handler: async(args) => {
         let { header } = args
 
-        const { retry, timeout, requestConcurrency, taskConcurrency, summary, json, unique, embed, write, tokenizer, filterTitle, filterSeverity, location } = args
+        const { retry, timeout, requestConcurrency, taskConcurrency, silent, json, unique, embed, write, tokenizer, filterTitle, filterSeverity, location } = args
 
         const headers = {}
 
@@ -203,7 +203,7 @@ exports.yargs = {
                 console.log(JSON.stringify(object))
             }
             else {
-                if (summary) {
+                if (!silent) {
                     console.warn(`title: ${title}, severity: ${severity}, index: ${index}, location: ${location}`)
                 }
 
