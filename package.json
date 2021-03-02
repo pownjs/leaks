@@ -4,7 +4,7 @@
   "description": "Pownage guaranteed",
   "main": "lib/index.js",
   "scripts": {
-    "start": "POWN_ROOT=. pown-cli leaks",
+    "usage": "POWN_ROOT=. pown-cli leaks --help",
     "leaks": "POWN_ROOT=. pown-cli leaks",
     "script": "POWN_ROOT=. pown-cli script",
     "test": "mocha",

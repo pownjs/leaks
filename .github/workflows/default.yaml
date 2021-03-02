@@ -48,7 +48,7 @@ jobs:
         run: npm install
       - name: Generate readme
         run: |
-          USAGE=`npm run start --silent -- --help`
+          USAGE=`npm run usage --silent`
           cat README.md.tpl | awk -v USAGE="$USAGE" '{ gsub("{{usage}}",USAGE) }1' > README.md
       - name: Commit results
         run: |
