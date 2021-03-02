@@ -75,26 +75,26 @@ $ POWN_ROOT=. pown leaks
 > **WARNING**: This pown command is currently under development and as a result will be subject to breaking changes.
 
 ```
-pown leaks <location>
+pown-cli leaks [location]
 
 Find leaks
 
 Options:
-  --version                      Show version number  [boolean]
-  --help                         Show help  [boolean]
-  --header, -H                   Custom header  [string]
+  --version                                               Show version number  [boolean]
+  --help                                                  Show help  [boolean]
+  --header, -H                                            Custom header  [string]
   --retry, -r  [number] [default: 5]
   --timeout, -t  [number] [default: 30000]
   --task-concurrency, -C  [number] [default: Infinity]
   --request-concurrency, -c  [number] [default: Infinity]
-  --summary, -s  [boolean] [default: false]
+  --silent, -s  [boolean] [default: false]
   --json, -j  [boolean] [default: false]
   --unique, -u  [boolean] [default: false]
   --embed, -e  [boolean] [default: false]
   --write, -w  [string] [default: ""]
-  --filter-title, --title  [string] [default: ""]
-  --filter-severity, --severity  [number] [default: 0]
-  --verbose, -V  [boolean] [default: "Run in verbose mode"]
+  --tokenizer, -z  [string] [choices: "none", "code-line"] [default: "code-line"]
+  --filter-title, --title, --filter-name, --name  [string] [default: ""]
+  --filter-severity, --severity, --filter-level, --level  [number] [default: 0]
 ```
 
 ## How To Contribute
