@@ -26,7 +26,7 @@
   "homepage": "https://github.com/pownjs/pown-leaks#readme",
   "devDependencies": {
     "@pown/cli": "^2.29.0",
-    "@pown/toolchain": "^2.0.0",
+    "@pown/toolchain": "^2.1.0",
     "safe-regex": "^2.1.1"
   },
   "dependencies": {
