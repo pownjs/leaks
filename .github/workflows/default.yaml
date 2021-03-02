@@ -30,6 +30,8 @@ jobs:
       - name: Install npm
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm install
+      - name: Install mocha
+        run: npm install -g mocha
       - name: Run testing
         run: npm run test
   
