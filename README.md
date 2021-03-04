@@ -2,6 +2,7 @@
 [![NPM](https://img.shields.io/npm/v/@pown/leaks.svg)](https://www.npmjs.com/package/@pown/leaks)
 [![Fury](https://img.shields.io/badge/version-2x%20Fury-red.svg)](https://github.com/pownjs/lobby)
 ![default workflow](https://github.com/pownjs/leaks/actions/workflows/default.yaml/badge.svg)
+[![SecApps](https://img.shields.io/badge/credits-SecApps-black.svg)](https://secapps.com)
 
 # Pown Leaks
 
