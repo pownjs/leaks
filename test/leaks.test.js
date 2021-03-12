@@ -1,14 +1,14 @@
 const assert = require('assert')
 
 const { LeaksPilot } = require('../lib/leaks')
-const { compileCollection } = require('../lib/helpers')
+const { compileCollection } = require('../lib/compile')
 
 describe('LeaksPilot', () => {
     describe('#iterateOverSearch', () => {
         it('must not produce results', async() => {
-            const db = {}
+            const database = {}
 
-            const lp = new LeaksPilot({ db })
+            const lp = new LeaksPilot({ database })
 
             const results = []
 
@@ -20,7 +20,7 @@ describe('LeaksPilot', () => {
         })
 
         it('must produce results', async() => {
-            const db = {
+            const database = {
                 test: compileCollection({
                     checks: [{
                         regex: /secret/
@@ -28,7 +28,7 @@ describe('LeaksPilot', () => {
                 })
             }
 
-            const lp = new LeaksPilot({ db })
+            const lp = new LeaksPilot({ database })
 
             const results = []
 
@@ -41,7 +41,7 @@ describe('LeaksPilot', () => {
         })
 
         it('must produce results with groups', async() => {
-            const db = {
+            const database = {
                 test: compileCollection({
                     checks: [{
                         regex: /secret\d+/
@@ -49,7 +49,7 @@ describe('LeaksPilot', () => {
                 })
             }
 
-            const lp = new LeaksPilot({ db })
+            const lp = new LeaksPilot({ database })
 
             const results = []
 
@@ -65,7 +65,7 @@ describe('LeaksPilot', () => {
 
     describe('#iterateOverSearchPerCodeLine', () => {
         it('must produce results with groups', async() => {
-            const db = {
+            const database = {
                 test: compileCollection({
                     checks: [{
                         regex: /secret\d+/
@@ -73,7 +73,7 @@ describe('LeaksPilot', () => {
                 })
             }
 
-            const lp = new LeaksPilot({ db })
+            const lp = new LeaksPilot({ database })
 
             const results = []
 
@@ -87,7 +87,7 @@ describe('LeaksPilot', () => {
         })
 
         it('must produce results with groups', async() => {
-            const db = {
+            const database = {
                 test: compileCollection({
                     checks: [{
                         regex: /secret\d+/
@@ -95,7 +95,7 @@ describe('LeaksPilot', () => {
                 })
             }
 
-            const lp = new LeaksPilot({ db })
+            const lp = new LeaksPilot({ database })
 
             const results = []
 

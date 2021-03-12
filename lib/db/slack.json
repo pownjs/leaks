@@ -1,8 +1,0 @@
-{
-  "title": "Slack Secrets",
-  "checks": [{
-    "title": "Slack Token",
-    "regex": "xox[baprs]-([0-9a-z-]{10,48})",
-    "severity": 9
-  }]
-}

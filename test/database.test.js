@@ -1,23 +1,23 @@
 const assert = require('assert')
 const safeRegex = require('safe-regex')
 
-const db = require('../lib/db')
+const database = require('../lib/database')
 
-describe('db', () => {
-    it('db is ok', () => {
-        assert.ok(db, 'db exists')
+describe('database', () => {
+    it('database is ok', () => {
+        assert.ok(database, 'database exists')
 
-        Object.entries(db).forEach(([name, { checks }]) => {
+        Object.entries(database).forEach(([name, { checks }]) => {
             checks.forEach((check, index) => {
                 assert.ok(check.title, `title exists for ${name}.${index}`)
             })
         })
     })
 
-    it('db checks validate', () => {
+    it('database checks validate', () => {
         const first = (it) => Array.from(it)[0]
 
-        Object.entries(db).forEach(([name, { checks }]) => {
+        Object.entries(database).forEach(([name, { checks }]) => {
             checks.forEach((check) => {
                 const { title, regex, test, tests = [], safe = true } = check
 

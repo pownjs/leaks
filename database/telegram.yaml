@@ -1,0 +1,5 @@
+title: Telegram Secrets
+checks:
+  - title: Telegram Secret
+    regex: \d{5,}:A[0-9a-z_\-]{34,34}
+    severity: 7

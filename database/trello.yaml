@@ -1,0 +1,5 @@
+title: Trello Secrets
+checks:
+  - title: Trello URL
+    regex: https://trello.com/b/[0-9a-z]/[0-9a-z_-]+
+    severity: 1

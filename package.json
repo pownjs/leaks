@@ -8,7 +8,7 @@
     "leaks": "POWN_ROOT=. pown-cli leaks",
     "script": "POWN_ROOT=. pown-cli script",
     "test": "mocha",
-    "build": "./scripts/generate-index.sh"
+    "build": "node ./scripts/generate-database.js"
   },
   "repository": {
     "type": "leaks",
