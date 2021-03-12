@@ -14,19 +14,27 @@ describe('dataset', () => {
         const lp = new LeaksPilot({ database: compileDatabase(database) })
 
         for (let { valid, invalid } of dataset) {
-            let gotOne = false
-
-            for await (const match of lp.iterateOverSearch(valid || invalid)) {
-                match;
-
-                gotOne = true
-            }
-
             if (valid) {
-                assert.ok(gotOne, `Valid secret ${JSON.stringify(valid)} should match`)
+                let lastMatch
+
+                for await (const match of lp.iterateOverSearch(valid || invalid)) {
+                    lastMatch = match
+                }
+
+                assert.ok(lastMatch, `Valid secret ${JSON.stringify(valid)} should match`)
             }
             else {
-                assert.ok(!gotOne, `invalid secret ${JSON.stringify(invalid)} should not match`)
+                let lastMatch
+
+                for await (const match of lp.iterateOverSearch(valid || invalid)) {
+                    lastMatch = match
+
+                    if (match) {
+                        break
+                    }
+                }
+
+                assert.ok(!lastMatch, `Invalid secret ${JSON.stringify(invalid)} should not match ${JSON.stringify(lastMatch, '', '  ')}`)
             }
         }
     })
