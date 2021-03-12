@@ -100,4 +100,4 @@ Options:
 
 ## How To Contribute
 
-Have a look at the `./lib/db` folder which contains all signatures. Insert your signatures using the naming convention and format and submit a pull request.
+Have a look at the `./database` folder which contains all signatures. Insert your signatures using the naming convention and format and submit a pull request.
