@@ -6,8 +6,7 @@
         "title": "AWS Client ID",
         "severity": 6,
         "regex": "\\b(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
-        "flags": "",
-        "note": "The flag is '' to avoid capturing the false possitives bellow"
+        "flags": ""
       },
       {
         "title": "AWS Secret Key",
@@ -38,26 +37,22 @@
       {
         "title": "AWS ELB",
         "severity": 1,
-        "regex": "\\b[\\w\\.-]+\\.elb\\.amazonaws\\.com",
-        "note": "TODO: This is slow, requires improvements."
+        "regex": "\\b[\\w\\.-]+\\.elb\\.amazonaws\\.com"
       },
       {
         "title": "AWS ELB",
         "severity": 1,
-        "regex": "\\b[\\w\\.-]+\\.elb\\.[\\w\\.-]+\\.amazonaws\\.com",
-        "note": "TODO: This is slow, requires improvements."
+        "regex": "\\b[\\w\\.-]+\\.elb\\.[\\w\\.-]+\\.amazonaws\\.com"
       },
       {
         "title": "AWS RDS",
         "severity": 1,
-        "regex": "\\b[\\w\\.-]+\\.rds\\.amazonaws\\.com",
-        "note": "TODO: This is slow, requires improvements."
+        "regex": "\\b[\\w\\.-]+\\.rds\\.amazonaws\\.com"
       },
       {
         "title": "AWS ElasticCache",
         "severity": 1,
-        "regex": "\\b[\\w\\.-]+\\.cache\\.amazonaws\\.com",
-        "note": "TODO: This is slow, requires improvements."
+        "regex": "\\b[\\w\\.-]+\\.cache\\.amazonaws\\.com"
       },
       {
         "title": "AWS ElasticSearch",
@@ -67,14 +62,12 @@
       {
         "title": "AWS S3 Endpoint",
         "severity": 1,
-        "regex": "\\b[\\w\\.-]+\\.s3\\.amazonaws\\.com",
-        "note": "TODO: This is slow, requires improvements."
+        "regex": "\\b[\\w\\.-]+\\.s3\\.amazonaws\\.com"
       },
       {
         "title": "AWS S3 Website Endpoint",
         "severity": 1,
-        "regex": "\\b[\\w\\.-]+\\.s3-website[\\w\\.-]+\\.amazonaws\\.com",
-        "note": "TODO: This is slow, requires improvements."
+        "regex": "\\b[\\w\\.-]+\\.s3-website[\\w\\.-]+\\.amazonaws\\.com"
       },
       {
         "title": "AWS S3 Bucket",
@@ -84,8 +77,7 @@
       {
         "title": "AWS API Gateway",
         "severity": 1,
-        "regex": "\\b[0-9a-z]+\\.execute-api\\.[\\w\\.-]+\\.amazonaws\\.com",
-        "note": "TODO: This is slow, requires improvements."
+        "regex": "\\b[0-9a-z]+\\.execute-api\\.[\\w\\.-]+\\.amazonaws\\.com"
       }
     ]
   },
@@ -152,20 +144,17 @@
       {
         "title": "Generic Key",
         "severity": 1,
-        "regex": "\\b[0-9a-z_]*(?<!(site|license|bugsnag|recaptcha)[_-]?)(key)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
-        "note": "TODO: This is slow, requires improvements."
+        "regex": "\\b[0-9a-z_]*(?<!(site|license|bugsnag|recaptcha)[_-]?)(key)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})"
       },
       {
         "title": "Generic Key",
         "severity": 1,
-        "regex": "\\b[0-9a-z_]*(?<!(adblock|site|license|bugsnag|recaptcha)[_-]?)(key)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
-        "note": "TODO: This is slow, requires improvements."
+        "regex": "\\b[0-9a-z_]*(?<!(adblock|site|license|bugsnag|recaptcha)[_-]?)(key)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})"
       },
       {
         "title": "Generic Token",
         "severity": 1,
         "regex": "\\b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
-        "note": "TODO: This is slow, requires improvements.",
         "negative": [
           "\"theme_token\":\"1L5NmeJ_gliOt8LvE7G2fFaT-_YQ0bv-IcXk_o8q9\"",
           "\"theme_token\":\"1L5NmeJ_gliOt8LvE7G2fFaT-_YQ0bv-IcXk_o8q9-A\""
@@ -174,33 +163,28 @@
       {
         "title": "Generic Token",
         "severity": 1,
-        "regex": "\\b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
-        "note": "TODO: This is slow, requires improvements."
+        "regex": "\\b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})"
       },
       {
         "title": "Generic Secret",
         "severity": 1,
-        "regex": "\\b[0-9a-z_]*(secret)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][^\\s'\"]{6,}['\"]?",
-        "note": "TODO: This is slow, requires improvements."
+        "regex": "\\b[0-9a-z_]*(secret)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][^\\s'\"]{6,}['\"]?"
       },
       {
         "title": "Generic Secret",
         "severity": 1,
-        "regex": "\\b[0-9a-z_]*(secret)\\s*=\\s*['\"]?[^\\s'\"]{6,}['\"]?",
-        "note": "TODO: This is slow, requires improvements."
+        "regex": "\\b[0-9a-z_]*(secret)\\s*=\\s*['\"]?[^\\s'\"]{6,}['\"]?"
       },
       {
         "title": "Generic Password",
         "severity": 1,
         "regex": "\\b[0-9a-z_]*(password|passwd|pwd)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"](?<exact>[^\\s'\"]{6,})['\"]?",
-        "note": "TODO: This is slow, requires improvements.",
         "entropy": 20
       },
       {
         "title": "Generic Password",
         "severity": 1,
         "regex": "\\b[0-9a-z_]*(password|passwd|pwd)\\s*=\\s*['\"]?(?<exact>[^\\s'\"]{6,})['\"]?",
-        "note": "TODO: This is slow, requires improvements.",
         "entropy": 20
       },
       {
@@ -374,8 +358,7 @@
         "title": "Twilio API Key",
         "severity": 8,
         "regex": "SK[0-9a-fA-F]{32}",
-        "flags": "",
-        "note": "The flag is '' to avoid capturing the false possitives bellow"
+        "flags": ""
       }
     ]
   },

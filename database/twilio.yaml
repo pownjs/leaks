@@ -4,7 +4,7 @@ checks:
     severity: 8
     regex: SK[0-9a-fA-F]{32}
     flags: ''
-    note: The flag is '' to avoid capturing the false possitives bellow
+    # The flag is '' to avoid capturing the false possitives bellow
     tests:
       negative:
         - sKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

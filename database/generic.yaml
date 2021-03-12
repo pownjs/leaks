@@ -4,7 +4,7 @@ checks:
     severity: 1
     regex: >-
       \b[0-9a-z_]*(?<!(site|license|bugsnag|recaptcha)[_-]?)(key)\\*['"]?\s*(:|=|=>|:=|\|\||;s:\d+:)\s*\\*['"]([0-9]+[a-z]+[0-9a-z\.\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\.\-_]{4,})
-    note: 'TODO: This is slow, requires improvements.'
+    # TODO: This is slow, requires improvements.
     tests:
       negative:
         - '''sitekey'':  ''6LewHloUAAAAAKdXnqjicyOfUNBxw-jH1jK6oNKA'''
@@ -14,7 +14,7 @@ checks:
     severity: 1
     regex: >-
       \b[0-9a-z_]*(?<!(adblock|site|license|bugsnag|recaptcha)[_-]?)(key)\s*=\s*['"]?([0-9]+[a-z]+[0-9a-z\.\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\.\-_]{4,})
-    note: 'TODO: This is slow, requires improvements.'
+    # TODO: This is slow, requires improvements.
     tests:
       negative:
         - >-
@@ -23,7 +23,7 @@ checks:
     severity: 1
     regex: >-
       \b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\*['"]?\s*(:|=|=>|:=|\|\||;s:\d+:)\s*\\*['"]([0-9]+[a-z]+[0-9a-z\.\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\.\-_]{6,})
-    note: 'TODO: This is slow, requires improvements.'
+    # TODO: This is slow, requires improvements.
     negative:
       - '"theme_token":"1L5NmeJ_gliOt8LvE7G2fFaT-_YQ0bv-IcXk_o8q9"'
       - '"theme_token":"1L5NmeJ_gliOt8LvE7G2fFaT-_YQ0bv-IcXk_o8q9-A"'
@@ -31,7 +31,7 @@ checks:
     severity: 1
     regex: >-
       \b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\s*=\s*['"]?([0-9]+[a-z]+[0-9a-z\.\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\.\-_]{6,})
-    note: 'TODO: This is slow, requires improvements.'
+    # TODO: This is slow, requires improvements.
     tests:
       negative:
         - >-
@@ -41,16 +41,16 @@ checks:
     severity: 1
     regex: >-
       \b[0-9a-z_]*(secret)\\*['"]\s*(:|=|=>|:=|\|\||;s:\d+:)\s*\\*['"][^\s'"]{6,}['"]?
-    note: 'TODO: This is slow, requires improvements.'
+    # TODO: This is slow, requires improvements.
   - title: Generic Secret
     severity: 1
     regex: \b[0-9a-z_]*(secret)\s*=\s*['"]?[^\s'"]{6,}['"]?
-    note: 'TODO: This is slow, requires improvements.'
+    # TODO: This is slow, requires improvements.
   - title: Generic Password
     severity: 1
     regex: >-
       \b[0-9a-z_]*(password|passwd|pwd)\\*['"]\s*(:|=|=>|:=|\|\||;s:\d+:)\s*\\*['"](?<exact>[^\s'"]{6,})['"]?
-    note: 'TODO: This is slow, requires improvements.'
+    # TODO: This is slow, requires improvements.
     entropy: 20
     tests:
       possitive:
@@ -61,7 +61,7 @@ checks:
   - title: Generic Password
     severity: 1
     regex: \b[0-9a-z_]*(password|passwd|pwd)\s*=\s*['"]?(?<exact>[^\s'"]{6,})['"]?
-    note: 'TODO: This is slow, requires improvements.'
+    # TODO: This is slow, requires improvements.
     entropy: 20
     tests:
       possitive:

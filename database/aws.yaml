@@ -4,7 +4,7 @@ checks:
     severity: 6
     regex: \b(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
     flags: ''
-    note: The flag is '' to avoid capturing the false possitives bellow
+    # The flag is '' to avoid capturing the false possitives bellow
     tests:
       negative:
         - A3TxNQshlGLAnE44zCIL
@@ -40,40 +40,40 @@ checks:
   - title: AWS ELB
     severity: 1
     regex: \b[\w\.-]+\.elb\.amazonaws\.com
-    note: 'TODO: This is slow, requires improvements.'
+    # TODO: This is slow, requires improvements.
   - title: AWS ELB
     severity: 1
     regex: \b[\w\.-]+\.elb\.[\w\.-]+\.amazonaws\.com
-    note: 'TODO: This is slow, requires improvements.'
+    # TODO: This is slow, requires improvements.
   - title: AWS RDS
     severity: 1
     regex: \b[\w\.-]+\.rds\.amazonaws\.com
-    note: 'TODO: This is slow, requires improvements.'
+    # TODO: This is slow, requires improvements.
     tests:
       possitive:
         - abcw3n-prod.cbmbuiv8aakk.us-east-1.rds.amazonaws.com
   - title: AWS ElasticCache
     severity: 1
     regex: \b[\w\.-]+\.cache\.amazonaws\.com
-    note: 'TODO: This is slow, requires improvements.'
+    # TODO: This is slow, requires improvements.
   - title: AWS ElasticSearch
     severity: 1
     regex: \b[\w\.-]+\.es\.amazonaws\.com
   - title: AWS S3 Endpoint
     severity: 1
     regex: \b[\w\.-]+\.s3\.amazonaws\.com
-    note: 'TODO: This is slow, requires improvements.'
+    # TODO: This is slow, requires improvements.
   - title: AWS S3 Website Endpoint
     severity: 1
     regex: \b[\w\.-]+\.s3-website[\w\.-]+\.amazonaws\.com
-    note: 'TODO: This is slow, requires improvements.'
+    # TODO: This is slow, requires improvements.
   - title: AWS S3 Bucket
     severity: 1
     regex: s3://[0-9a-z.\-_/]+
   - title: AWS API Gateway
     severity: 1
     regex: \b[0-9a-z]+\.execute-api\.[\w\.-]+\.amazonaws\.com
-    note: 'TODO: This is slow, requires improvements.'
+    # TODO: This is slow, requires improvements.
     tests:
       possitive:
         - https://956uxyx6ej.execute-api.ap-northeast-1.amazonaws.com/prod/slack
