@@ -1,9 +1,22 @@
+const fs = require('fs')
+const path = require('path')
 const assert = require('assert')
+const jsYaml = require('js-yaml')
 const safeRegex = require('safe-regex')
 
-const database = require('../lib/database')
+const { compileDatabase } = require('../lib/compile')
 
 describe('database', () => {
+    const databaseRoot = path.join(__dirname, '..', 'database')
+
+    const database = compileDatabase(Object.assign({}, ...fs.readdirSync(databaseRoot).map((file) => {
+        const doc = jsYaml.load(fs.readFileSync(path.join(databaseRoot, file)).toString())
+
+        return {
+            [path.basename(file, '.yaml')]: doc
+        }
+    })))
+
     it('database is ok', () => {
         assert.ok(database, 'database exists')
 
