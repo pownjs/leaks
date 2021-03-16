@@ -10,3 +10,8 @@
 - valid: fb:app_id" content="1606018679610384"
 - valid: RECAPTCHA_PUBLIC_KEY = '6LfQyXYUAAAAAM4O0m1Trp_GhAQgX3csz0YU1lGF
 - valid: adblockkey="MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKX74ixpzVyXbJprcLfbH4psP4
+- invalid: http://user:pass@example.com/
+# - invalid: usernamePassword={username:e.commonUsername,password:{isEmbedded:!0,newPassword:r.PasswordUnchanged}}):(e.hasManagedKeychain||e.hasOAuthCredential)&&(t.credentialOption="
+# - invalid: password=Tt.call(e),e.host=jt.call(e),e.hostname=Mt.call(e),e.port=Pt.call(e),e.pathname=Lt.call(e),e.search=kt.call(e),e.searchParams=Nt.call(e),e.hash=Ft.call(e))},At=St.prototype,Et=function(){var
+# - invalid: usernamePassword={username:e.commonUsername,password:{isEmbedded:!0,newPassword:r.PasswordUnchanged}}):(e.hasManagedKeychain||e.hasOAuthCredential)&&(t.credentialOption="
+# - invalid: secret="+authToken,

@@ -195,13 +195,14 @@
       {
         "title": "Sensitive URL Credentials",
         "severity": 7,
-        "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\"]+?:[^\\s\\{\\}\\(\\)\\<\\>\\/%]{3,}@[^\\s'\"\\)]{4,}",
-        "filterRegex": "(sentry\\.io\\/)"
+        "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\"]+?:(?<exact>[^\\s\\{\\}\\(\\)\\<\\>\\/%]{3,})@[^\\s'\"\\)]{4,}",
+        "filterRegex": "(sentry\\.io\\/)",
+        "entropy": 20
       },
       {
         "title": "Sensitive URL",
         "severity": 5,
-        "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\"]{3,}@[^\\s'\"\\)]{4,}",
+        "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\":]{3,}@[^\\s'\"\\)]{4,}",
         "filterRegex": "(sentry\\.io\\/)"
       }
     ]

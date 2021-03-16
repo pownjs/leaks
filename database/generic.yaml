@@ -10,6 +10,7 @@ checks:
         - '''sitekey'':  ''6LewHloUAAAAAKdXnqjicyOfUNBxw-jH1jK6oNKA'''
         - 'bugsnagKey: "5792c4d9ba21d5d5dc922a4b2586d090"'
         - reCaptchaKey":"6Lcw5PwUAAAAAEZ9dIIezn_kchXS0Ycqdwt
+  
   - title: Generic Key
     severity: 1
     regex: >-
@@ -19,6 +20,7 @@ checks:
       negative:
         - >-
           adblockkey="MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKX74ixpzVyXbJprcLfbH4psP4"
+  
   - title: Generic Token
     severity: 1
     regex: >-
@@ -27,6 +29,7 @@ checks:
     negative:
       - '"theme_token":"1L5NmeJ_gliOt8LvE7G2fFaT-_YQ0bv-IcXk_o8q9"'
       - '"theme_token":"1L5NmeJ_gliOt8LvE7G2fFaT-_YQ0bv-IcXk_o8q9-A"'
+      
   - title: Generic Token
     severity: 1
     regex: >-
@@ -37,15 +40,18 @@ checks:
         - >-
           _csrf_token =
           '7919339144ed6fee19153e81508ec9b52bb8302b14c4e60844032feadc9bb5095f62e0620e8d3ad886e8af759d3d9858'
+          
   - title: Generic Secret
     severity: 1
     regex: >-
       \b[0-9a-z_]*(secret)\\*['"]\s*(:|=|=>|:=|\|\||;s:\d+:)\s*\\*['"][^\s'"]{6,}['"]?
     # TODO: This is slow, requires improvements.
+    
   - title: Generic Secret
     severity: 1
     regex: \b[0-9a-z_]*(secret)\s*=\s*['"]?[^\s'"]{6,}['"]?
     # TODO: This is slow, requires improvements.
+    
   - title: Generic Password
     severity: 1
     regex: >-
@@ -58,6 +64,7 @@ checks:
       negative:
         - '''PASSWORD'': '''','
         - '"passwd": "^1.0.0"'
+        
   - title: Generic Password
     severity: 1
     regex: \b[0-9a-z_]*(password|passwd|pwd)\s*=\s*['"]?(?<exact>[^\s'"]{6,})['"]?
@@ -68,23 +75,27 @@ checks:
         - PASSWORD=secret123
       negative:
         - '''PASSWORD'': '''','
+  
   - title: Generic Authorization
     severity: 1
     regex: \b(authorization)\s*:\s*(bearer|token|basic)\s+[0-9a-z\.\-_]{6,}
+    
   - title: Sensitive URL Credentials
     severity: 7
     regex: >-
-      (https?|ftp):\/\/[^\s\{\}\(\)\<\>\/%$'"]+?:[^\s\{\}\(\)\<\>\/%]{3,}@[^\s'"\)]{4,}
+      (https?|ftp):\/\/[^\s\{\}\(\)\<\>\/%$'"]+?:(?<exact>[^\s\{\}\(\)\<\>\/%]{3,})@[^\s'"\)]{4,}
     filterRegex: (sentry\.io\/)
+    entropy: 20
+    
   - title: Sensitive URL
     severity: 5
-    regex: (https?|ftp):\/\/[^\s\{\}\(\)\<\>\/%$'"]{3,}@[^\s'"\)]{4,}
+    regex: >-
+      (https?|ftp):\/\/[^\s\{\}\(\)\<\>\/%$'":]{3,}@[^\s'"\)]{4,}
     filterRegex: (sentry\.io\/)
     tests:
       possitive:
         - http://user@acme.com
         - ftp://user@acme.com
-        - http://user:password@acme.com
       negative:
         - https://test.com"@acme.com
         - https://a@b
