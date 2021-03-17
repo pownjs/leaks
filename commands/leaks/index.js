@@ -3,117 +3,79 @@ exports.yargs = {
     describe: 'Find leaks',
     aliases: ['leak'],
 
-    builder: (yargs) => {
-        yargs.options('header', {
-            alias: ['H'],
-            type: 'string',
-            describe: 'Custom header'
-        })
+    builder: {
+        ...require('@pown/request/commands/request/options/scheduler'),
+        ...require('@pown/request/commands/request/options/request'),
+        ...require('@pown/request/commands/request/options/output'),
+        ...require('@pown/request/commands/request/options/proxy'),
 
-        yargs.options('retry', {
-            alias: ['r'],
-            type: 'number',
-            default: 5
-        })
-
-        yargs.options('timeout', {
-            alias: ['t'],
-            type: 'number',
-            default: 30000
-        })
-
-        yargs.options('task-concurrency', {
+        'task-concurrency': {
             alias: ['C'],
             type: 'number',
             default: Infinity
-        })
+        },
 
-        yargs.options('request-concurrency', {
-            alias: ['c'],
-            type: 'number',
-            default: Infinity
-        })
-
-        yargs.options('silent', {
+        'silent': {
             alias: ['s'],
             type: 'boolean',
             default: false
-        })
+        },
 
-        yargs.options('json', {
+        'json': {
             alias: ['j'],
             type: 'boolean',
             default: false
-        })
+        },
 
-        yargs.options('unique', {
+        'unique': {
             alias: ['u'],
             type: 'boolean',
             default: false
-        })
+        },
 
-        yargs.options('embed', {
+        'embed': {
             alias: ['e'],
             type: 'boolean',
             default: false
-        })
+        },
 
-        yargs.options('write', {
+        'write': {
             alias: ['w'],
             type: 'string',
             default: ''
-        })
+        },
 
-        yargs.options('tokenizer', {
+        'tokenizer': {
             alias: ['z'],
             type: 'string',
             choices: ['none', 'code-line'],
             default: 'code-line'
-        })
+        },
 
-        yargs.options('filter-title', {
+        'filter-title': {
             alias: ['title', 'filter-name', 'name'],
             type: 'string',
             default: ''
-        })
+        },
 
-        yargs.options('filter-severity', {
+        'filter-severity': {
             alias: ['severity', 'filter-level', 'level'],
             type: 'number',
             default: 0
-        })
+        }
     },
 
-    handler: async(args) => {
-        let { header } = args
+    handler: async(argv) => {
+        const { taskConcurrency, silent, json, unique, embed, write, tokenizer, filterTitle, filterSeverity, location } = argv
 
-        const { retry, timeout, requestConcurrency, taskConcurrency, silent, json, unique, embed, write, tokenizer, filterTitle, filterSeverity, location } = args
+        const { Scheduler } = require('@pown/request/lib/scheduler')
 
-        const headers = {}
+        const scheduler = new Scheduler()
 
-        if (header) {
-            if (!Array.isArray(header)) {
-                header = [header]
-            }
-
-            for (let entry of header) {
-                let [name = '', value = ''] = entry.split(':', 1)
-
-                name = name.trim() || entry
-                value = value.trim() || ''
-
-                if (headers[name]) {
-                    if (!Array.isArray(headers[name])) {
-                        headers[name] = [headers[name]]
-                    }
-
-                    headers[name].push(value)
-                }
-                else {
-                    headers[name] = value
-                }
-            }
-        }
+        require('@pown/request/commands/request/options/scheduler/handler').init(argv, scheduler)
+        require('@pown/request/commands/request/options/request/handler').init(argv, scheduler)
+        require('@pown/request/commands/request/options/output/handler').init(argv, scheduler)
+        require('@pown/request/commands/request/options/proxy/handler').init(argv, scheduler)
 
         const fs = require('fs')
         const path = require('path')
@@ -124,19 +86,8 @@ exports.yargs = {
         const readdirAsync = promisify(fs.readdir)
         const readFileAsync = promisify(fs.readFile)
 
-        const { Scheduler } = require('@pown/request/lib/scheduler')
-
-        const scheduler = new Scheduler({ maxConcurrent: requestConcurrency })
-
-        const options = {
-            scheduler,
-            headers,
-            retry,
-            timeout
-        }
-
         const fetchRequest = async(location) => {
-            const { responseBody } = await scheduler.request({ ...options, uri: location })
+            const { responseBody } = await scheduler.request({ uri: location })
 
             return responseBody
         }
@@ -189,10 +140,8 @@ exports.yargs = {
             }
         }
 
-        const { calculateEntropy } = require('../../lib/entropy')
-
         let print = (location, result, text) => {
-            const { check, index, exact, find } = result
+            const { check, index, exact, find, entropy } = result
             const { severity, title, regex } = check
 
             if (json) {
@@ -206,8 +155,6 @@ exports.yargs = {
             }
             else {
                 if (!silent) {
-                    const entropy = Math.round(calculateEntropy(exact))
-
                     console.warn(`title: ${title}, severity: ${severity}, index: ${index}, entropy: ${entropy}, location: ${location}`)
                 }
 
@@ -222,10 +169,10 @@ exports.yargs = {
                 const ws = createWriteStream(write)
 
                 return (location, result, text) => {
-                    const { check, index, find } = result
+                    const { check, index, exact, find, entropy } = result
                     const { severity, title, regex } = check
 
-                    const object = { location, severity, title, index, exact, find, regex: regex.toString() }
+                    const object = { location, severity, title, index, exact, find, entropy, regex: regex.toString() }
 
                     if (embed) {
                         object['contents'] = text
@@ -256,8 +203,9 @@ exports.yargs = {
         }
 
         const { LeaksPilot } = require('../../lib/leaks')
+        const { compileDatabase } = require('../../lib/compile')
 
-        const lp = new LeaksPilot({ db: { ...require('../../lib/db'), ...require('../../lib/scanners') }, title: filterTitle, severity: filterSeverity })
+        const lp = new LeaksPilot({ database: { ...compileDatabase(require('../../lib/database')), ...require('../../lib/scanners') }, title: filterTitle, severity: filterSeverity })
 
         let iterator
 
