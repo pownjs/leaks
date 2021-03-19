@@ -23,7 +23,7 @@ describe('LeaksPilot', () => {
             const database = {
                 test: compileCollection({
                     checks: [{
-                        regex: /secret/
+                        regex: /secret/g
                     }]
                 })
             }
@@ -44,7 +44,7 @@ describe('LeaksPilot', () => {
             const database = {
                 test: compileCollection({
                     checks: [{
-                        regex: /secret\d+/
+                        regex: /secret\d+/g
                     }]
                 })
             }
@@ -68,7 +68,7 @@ describe('LeaksPilot', () => {
             const database = {
                 test: compileCollection({
                     checks: [{
-                        regex: /secret\d+/
+                        regex: /secret\d+/g
                     }]
                 })
             }
@@ -90,7 +90,7 @@ describe('LeaksPilot', () => {
             const database = {
                 test: compileCollection({
                     checks: [{
-                        regex: /secret\d+/
+                        regex: /secret\d+/g
                     }]
                 })
             }
