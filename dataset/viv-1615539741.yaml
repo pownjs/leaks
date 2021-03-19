@@ -22,3 +22,4 @@
 # - invalid: CONFIRM_PASSWORD":"Confirmed
 # - invalid: forgotPassword':'Forgotten
 # - invalid: password=null),t},u.parseQuery=function(t,e){if(!t)return{};if(!(t=t.replace(/&+/g,"
+- invalid: https://a@b
