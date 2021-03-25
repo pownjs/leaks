@@ -26,20 +26,26 @@ checks:
     regex: >-
       \b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\*['"]?\s*(:|=|=>|:=|\|\||;s:\d+:)\s*\\*['"]([0-9]+[a-z]+[0-9a-z\.\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\.\-_]{6,})
     # TODO: This is slow, requires improvements.
-    negative:
-      - '"theme_token":"1L5NmeJ_gliOt8LvE7G2fFaT-_YQ0bv-IcXk_o8q9"'
-      - '"theme_token":"1L5NmeJ_gliOt8LvE7G2fFaT-_YQ0bv-IcXk_o8q9-A"'
+    tests:
+      negative:
+        - '"theme_token":"1L5NmeJ_gliOt8LvE7G2fFaT-_YQ0bv-IcXk_o8q9"'
+        - '"theme_token":"1L5NmeJ_gliOt8LvE7G2fFaT-_YQ0bv-IcXk_o8q9-A"'
       
   - title: Generic Token
     severity: 1
     regex: >-
-      \b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\s*=\s*['"]?([0-9]+[a-z]+[0-9a-z\.\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\.\-_]{6,})
+      \b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\s*=\s*['"]?(?<exact>[0-9]+[a-z]+[0-9a-z\.\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\.\-_]{6,})
     # TODO: This is slow, requires improvements.
+    entropy: 85
     tests:
+      positive:
+        - accessToken = d3baee3f34fb41778239a68516518723
+        - demoToken = ae4c9d06-8777-489f-b60a-90142df902cd
       negative:
         - >-
           _csrf_token =
           '7919339144ed6fee19153e81508ec9b52bb8302b14c4e60844032feadc9bb5095f62e0620e8d3ad886e8af759d3d9858'
+        - base64IdToken = base64IdToken.replace
           
   - title: Generic Secret
     severity: 1
@@ -59,7 +65,7 @@ checks:
     # TODO: This is slow, requires improvements.
     entropy: 20
     tests:
-      possitive:
+      positive:
         - '''password''=''secret123'''
       negative:
         - '''PASSWORD'': '''','
@@ -71,7 +77,7 @@ checks:
     # TODO: This is slow, requires improvements.
     entropy: 20
     tests:
-      possitive:
+      positive:
         - PASSWORD=secret123
       negative:
         - '''PASSWORD'': '''','
@@ -93,7 +99,7 @@ checks:
       (https?|ftp):\/\/[^\s\{\}\(\)\<\>\/%$'":]{3,}@[^\s'"\)]{4,}
     filterRegex: (sentry\.io\/)
     tests:
-      possitive:
+      positive:
         - http://user@acme.com
         - ftp://user@acme.com
       negative:

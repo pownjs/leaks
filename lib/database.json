@@ -154,16 +154,13 @@
       {
         "title": "Generic Token",
         "severity": 1,
-        "regex": "\\b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
-        "negative": [
-          "\"theme_token\":\"1L5NmeJ_gliOt8LvE7G2fFaT-_YQ0bv-IcXk_o8q9\"",
-          "\"theme_token\":\"1L5NmeJ_gliOt8LvE7G2fFaT-_YQ0bv-IcXk_o8q9-A\""
-        ]
+        "regex": "\\b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})"
       },
       {
         "title": "Generic Token",
         "severity": 1,
-        "regex": "\\b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})"
+        "regex": "\\b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\s*=\\s*['\"]?(?<exact>[0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
+        "entropy": 85
       },
       {
         "title": "Generic Secret",
@@ -294,6 +291,11 @@
         "title": "Slack Token",
         "regex": "xox[baprs]-([0-9a-z-]{10,48})",
         "severity": 9
+      },
+      {
+        "title": "Slack Webhook",
+        "regex": "https://hooks.slack.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8,12}/[a-zA-Z0-9_]{24}",
+        "severity": 8
       }
     ]
   },

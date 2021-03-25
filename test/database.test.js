@@ -37,15 +37,15 @@ describe('database', () => {
                 assert.ok(!test, `${JSON.stringify(title)} has incorrect test declaration`)
 
                 if (tests) {
-                    const { possitive, negative } = tests
+                    const { positive, negative } = tests
 
-                    if (possitive) {
+                    if (positive) {
                         const { scan } = check
 
-                        possitive.forEach((test, index) => {
+                        positive.forEach((test, index) => {
                             const result = first(scan(test))
 
-                            assert.ok(result, `${JSON.stringify(title)} validates against possitive test ${JSON.stringify(test)} at index ${index}`)
+                            assert.ok(result, `${JSON.stringify(title)} validates against positive test ${JSON.stringify(test)} at index ${index}`)
                         })
                     }
 
