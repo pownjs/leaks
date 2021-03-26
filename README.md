@@ -76,9 +76,13 @@ $ POWN_ROOT=. pown leaks
 > **WARNING**: This pown command is currently under development and as a result will be subject to breaking changes.
 
 ```
-pown-cli leaks [location]
+pown-cli leaks <command>
 
-Find leaks
+Leaks / secrets detection tool
+
+Commands:
+  pown-cli leaks [location]     Find leaks  [default]
+  pown-cli leaks export [file]  Export leaks database
 
 Options:
   --version                                                 Show version number  [boolean]
