@@ -14,6 +14,7 @@ Some signatures were borrowed or heavily inspired by the following projects:
 
 * gitleaks - https://github.com/zricethezav/gitleaks
 * shhgit - https://github.com/eth0izzle/shhgit
+* SecretsScanner - https://github.com/deepfence/SecretScanner/
 
 This tool is part of [secapps.com](https://secapps.com) open-source initiative.
 
