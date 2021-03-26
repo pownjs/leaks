@@ -96,23 +96,23 @@
     "checks": [
       {
         "title": "RKCS8",
-        "regex": "-----BEGIN PRIVATE KEY-----",
-        "severity": 10
+        "severity": 10,
+        "regex": "-----BEGIN PRIVATE KEY-----"
       },
       {
         "title": "RSA",
-        "regex": "-----BEGIN RSA PRIVATE KEY-----",
-        "severity": 10
+        "severity": 10,
+        "regex": "-----BEGIN RSA PRIVATE KEY-----"
       },
       {
         "title": "SSH",
-        "regex": "-----BEGIN OPENSSH PRIVATE KEY-----",
-        "severity": 10
+        "severity": 10,
+        "regex": "-----BEGIN OPENSSH PRIVATE KEY-----"
       },
       {
         "title": "PGP",
-        "regex": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
-        "severity": 10
+        "severity": 10,
+        "regex": "-----BEGIN PGP PRIVATE KEY BLOCK-----"
       }
     ]
   },
@@ -121,19 +121,19 @@
     "checks": [
       {
         "title": "Facebook Client ID",
-        "regex": "(facebook|fb)(.{0,20})?['\\\"][0-9]{13,17}['\\\"]",
         "severity": 1,
+        "regex": "(facebook|fb)(.{0,20})?['\\\"][0-9]{13,17}['\\\"]",
         "safe": false
       },
       {
         "title": "Facebook Access Token",
-        "regex": "EAACEdEose0cBA[0-9a-z]+",
-        "severity": 6
+        "severity": 6,
+        "regex": "EAACEdEose0cBA[0-9a-z]+"
       },
       {
         "title": "Facebook Secret Key",
-        "regex": "(facebook|fb)(.{0,20})?['\\\"][0-9a-f]{32}['\\\"]",
         "severity": 7,
+        "regex": "(facebook|fb)(.{0,20})?['\\\"][0-9a-f]{32}['\\\"]",
         "safe": false
       }
     ]
@@ -304,8 +304,8 @@
     "checks": [
       {
         "title": "Square API Key",
-        "regex": "sq0(atp|csp)-[0-9a-z\\-_]{22,43}",
-        "severity": 9
+        "severity": 9,
+        "regex": "sq0(atp|csp)-[0-9a-z\\-_]{22,43}"
       }
     ]
   },
@@ -314,23 +314,23 @@
     "checks": [
       {
         "title": "Stripe Secret Live Key",
-        "regex": "(sk|rk)_live_[0-9a-z]{24}",
-        "severity": 10
+        "severity": 10,
+        "regex": "(sk|rk)_live_[0-9a-z]{24}"
       },
       {
         "title": "Stripe Secret Test Key",
-        "regex": "(sk|rk)_test_[0-9a-z]{24}",
-        "severity": 5
+        "severity": 5,
+        "regex": "(sk|rk)_test_[0-9a-z]{24}"
       },
       {
         "title": "Stripe Public Live Key",
-        "regex": "pk_live_[0-9a-z]{24}",
-        "severity": 1
+        "severity": 1,
+        "regex": "pk_live_[0-9a-z]{24}"
       },
       {
         "title": "Stripe Public Test Key",
-        "regex": "pk_test_[0-9a-z]{24}",
-        "severity": 1
+        "severity": 1,
+        "regex": "pk_test_[0-9a-z]{24}"
       }
     ]
   },
@@ -339,8 +339,8 @@
     "checks": [
       {
         "title": "Telegram Secret",
-        "regex": "\\d{5,}:A[0-9a-z_\\-]{34,34}",
-        "severity": 7
+        "severity": 7,
+        "regex": "\\d{5,}:A[0-9a-z_\\-]{34,34}"
       }
     ]
   },
@@ -349,8 +349,8 @@
     "checks": [
       {
         "title": "Trello URL",
-        "regex": "https://trello.com/b/[0-9a-z]/[0-9a-z_-]+",
-        "severity": 1
+        "severity": 1,
+        "regex": "https://trello.com/b/[0-9a-z]/[0-9a-z_-]+"
       }
     ]
   },

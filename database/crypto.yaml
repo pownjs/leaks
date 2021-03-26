@@ -1,14 +1,17 @@
 title: Crypto Secrets
 checks:
   - title: RKCS8
+    severity: 10
     regex: '-----BEGIN PRIVATE KEY-----'
-    severity: 10
+    
   - title: RSA
+    severity: 10
     regex: '-----BEGIN RSA PRIVATE KEY-----'
-    severity: 10
+    
   - title: SSH
+    severity: 10
     regex: '-----BEGIN OPENSSH PRIVATE KEY-----'
-    severity: 10
+    
   - title: PGP
-    regex: '-----BEGIN PGP PRIVATE KEY BLOCK-----'
     severity: 10
+    regex: '-----BEGIN PGP PRIVATE KEY BLOCK-----'

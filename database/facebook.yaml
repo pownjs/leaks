@@ -1,13 +1,15 @@
 title: Facebook Secrets
 checks:
   - title: Facebook Client ID
-    regex: (facebook|fb)(.{0,20})?['\"][0-9]{13,17}['\"]
     severity: 1
+    regex: (facebook|fb)(.{0,20})?['\"][0-9]{13,17}['\"]
     safe: false
+    
   - title: Facebook Access Token
-    regex: EAACEdEose0cBA[0-9a-z]+
     severity: 6
+    regex: EAACEdEose0cBA[0-9a-z]+
+    
   - title: Facebook Secret Key
-    regex: (facebook|fb)(.{0,20})?['\"][0-9a-f]{32}['\"]
     severity: 7
+    regex: (facebook|fb)(.{0,20})?['\"][0-9a-f]{32}['\"]
     safe: false
