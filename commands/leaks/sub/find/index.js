@@ -119,7 +119,7 @@ exports.yargs = {
 
                     async function* recurseDirectory(directory) {
                         for (let entry of await readdirAsync(directory, { withFileTypes: true })) {
-                            const pathname = path.join(directory, entry.name)
+                            const pathname = path.resolve(path.join(directory, entry.name))
 
                             if (entry.isDirectory()) {
                                 yield* recurseDirectory(pathname)
@@ -134,7 +134,7 @@ exports.yargs = {
                         yield* recurseDirectory(loc)
                     }
                     else {
-                        yield { type: 'file', location: loc }
+                        yield { type: 'file', location: path.resolve(loc) }
                     }
                 }
             }
@@ -244,7 +244,7 @@ exports.yargs = {
                 const data = await fetch(location)
                 const text = data.toString()
 
-                for await (let result of iterator(text)) {
+                for await (let result of iterator(text, { location })) {
                     print(location, result, text)
                 }
             }

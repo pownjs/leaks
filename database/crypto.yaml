@@ -3,15 +3,19 @@ checks:
   - title: RKCS8
     severity: 10
     regex: '-----BEGIN PRIVATE KEY-----'
+    flags: ''
     
   - title: RSA
     severity: 10
     regex: '-----BEGIN RSA PRIVATE KEY-----'
+    flags: ''
     
   - title: SSH
     severity: 10
     regex: '-----BEGIN OPENSSH PRIVATE KEY-----'
+    flags: ''
     
   - title: PGP
     severity: 10
     regex: '-----BEGIN PGP PRIVATE KEY BLOCK-----'
+    flags: ''

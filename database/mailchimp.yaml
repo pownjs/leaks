@@ -1,5 +1,5 @@
 title: Mailchimp Secrets
 checks:
   - title: Mailchimp API Key
-    regex: '[0-9a-f]{32}-us[0-9]{1,2}'
     severity: 9
+    regex: '[0-9a-f]{32}-us[0-9]{1,2}'

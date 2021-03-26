@@ -1,0 +1,5 @@
+title: Nuget Secrets
+checks:
+  - title: Nuget API Key
+    severity: 9
+    regex: 'oy2[a-z0-9]{43}'

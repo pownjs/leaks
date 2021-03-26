@@ -27,3 +27,7 @@
 # - invalid: Password = AW.UI.Input.subclass()
 # - invalid: authorizePassword = function(e)
 # - invalid: 'key: "hideOver3MonthsButton'
+- invalid: resetPassword = function(e,
+# - invalid: pwd = SDPUtils.matchPrefix(mediaSection
+- invalid: regenOAuthAppSecret = function(t)
+- invalid: sentry_secret = this._globalSecret)

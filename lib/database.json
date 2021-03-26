@@ -1,4 +1,15 @@
 {
+  "artifactory": {
+    "title": "Artifactory Secrets",
+    "checks": [
+      {
+        "title": "Artifactory Session Token",
+        "severity": 9,
+        "regex": "(?i)artifactory.{0,50}(\\\"|'|`)?[a-zA-Z0-9=]{112}(\\\"|'|`)?",
+        "safe": false
+      }
+    ]
+  },
   "aws": {
     "title": "AWS Secrets & Enumeration",
     "checks": [
@@ -86,8 +97,18 @@
     "checks": [
       {
         "title": "Braintree API Key",
-        "regex": "access_token\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32}",
-        "severity": 9
+        "severity": 9,
+        "regex": "access_token\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32}"
+      }
+    ]
+  },
+  "codeclimate": {
+    "title": "CodeClimate Secrets",
+    "checks": [
+      {
+        "title": "CodeClimate Key",
+        "severity": 9,
+        "regex": "codeclima.{0,50}(\\\"|'|`)?[0-9a-f]{64}(\\\"|'|`)?"
       }
     ]
   },
@@ -97,22 +118,26 @@
       {
         "title": "RKCS8",
         "severity": 10,
-        "regex": "-----BEGIN PRIVATE KEY-----"
+        "regex": "-----BEGIN PRIVATE KEY-----",
+        "flags": ""
       },
       {
         "title": "RSA",
         "severity": 10,
-        "regex": "-----BEGIN RSA PRIVATE KEY-----"
+        "regex": "-----BEGIN RSA PRIVATE KEY-----",
+        "flags": ""
       },
       {
         "title": "SSH",
         "severity": 10,
-        "regex": "-----BEGIN OPENSSH PRIVATE KEY-----"
+        "regex": "-----BEGIN OPENSSH PRIVATE KEY-----",
+        "flags": ""
       },
       {
         "title": "PGP",
         "severity": 10,
-        "regex": "-----BEGIN PGP PRIVATE KEY BLOCK-----"
+        "regex": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+        "flags": ""
       }
     ]
   },
@@ -170,7 +195,8 @@
       {
         "title": "Generic Secret",
         "severity": 1,
-        "regex": "\\b[0-9a-z_]*(secret)\\s*=\\s*['\"]?[^\\s'\"]{6,}['\"]?"
+        "regex": "\\b[0-9a-z_]*(secret)\\s*=\\s*['\"]?[^\\s'\"]{6,}['\"]?",
+        "filterRegex": "=\\s*(this\\.|function\\()"
       },
       {
         "title": "Generic Password",
@@ -182,6 +208,7 @@
         "title": "Generic Password",
         "severity": 1,
         "regex": "\\b[0-9a-z_]*(password|passwd|pwd)\\s*=\\s*['\"]?(?<exact>[^\\s'\"]{6,})['\"]?",
+        "filterRegex": "=\\s*(this\\.|function\\()",
         "entropy": 20
       },
       {
@@ -225,6 +252,12 @@
         "safe": false
       },
       {
+        "title": "Google (GCM) Service account",
+        "severity": 9,
+        "regex": "((\\\"|'|`)?type(\\\"|'|`)?\\\\s{0,50}(:|=>|=)\\\\s{0,50}(\\\"|'|`)?service_account(\\\"|'|`)?,?)",
+        "safe": false
+      },
+      {
         "title": "Google API Key",
         "severity": 4,
         "regex": "AIza[0-9a-z\\-_]{35}"
@@ -243,6 +276,17 @@
         "title": "Heroku API Key",
         "severity": 9,
         "regex": "heroku(.{0,20})?['\"][0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}['\"]",
+        "safe": false
+      }
+    ]
+  },
+  "hockeyapp": {
+    "title": "HockeyApp Secrets",
+    "checks": [
+      {
+        "title": "HockeyApp API Key",
+        "severity": 9,
+        "regex": "hockey.{0,50}(\\\"|'|`)?[0-9a-f]{32}(\\\"|'|`)?",
         "safe": false
       }
     ]
@@ -269,8 +313,8 @@
     "checks": [
       {
         "title": "Mailchimp API Key",
-        "regex": "[0-9a-f]{32}-us[0-9]{1,2}",
-        "severity": 9
+        "severity": 9,
+        "regex": "[0-9a-f]{32}-us[0-9]{1,2}"
       }
     ]
   },
@@ -281,6 +325,46 @@
         "title": "Mailgun API Key",
         "regex": "key-[0-9a-z]{32}",
         "severity": 9
+      }
+    ]
+  },
+  "nuget": {
+    "title": "Nuget Secrets",
+    "checks": [
+      {
+        "title": "Nuget API Key",
+        "severity": 9,
+        "regex": "oy2[a-z0-9]{43}"
+      }
+    ]
+  },
+  "outlook": {
+    "title": "Outlook Secrets",
+    "checks": [
+      {
+        "title": "Outlook Team",
+        "severity": 9,
+        "regex": "(https\\\\://outlook\\\\.office.com/webhook/[0-9a-f-]{36}\\\\@)"
+      }
+    ]
+  },
+  "sauce": {
+    "title": "Sauce Secrets",
+    "checks": [
+      {
+        "title": "Sauce Token",
+        "severity": 9,
+        "regex": "sauce.{0,50}(\\\"|'|`)?[0-9a-f-]{36}(\\\"|'|`)?"
+      }
+    ]
+  },
+  "sendgrid": {
+    "title": "SendGrid Secrets",
+    "checks": [
+      {
+        "title": "SendGrid API Key",
+        "severity": 9,
+        "regex": "SG\\.[0-9A-Za-z\\-_]{22}\\.[0-9A-Za-z\\-_]{43}"
       }
     ]
   },
@@ -299,13 +383,33 @@
       }
     ]
   },
+  "sonarqube": {
+    "title": "SonarQube Secrets",
+    "checks": [
+      {
+        "title": "SonarQube API Key",
+        "severity": 9,
+        "regex": "sonar.{0,50}(\\\"|'|`)?[0-9a-f]{40}(\\\"|'|`)?"
+      }
+    ]
+  },
   "square": {
     "title": "Square Secrets",
     "checks": [
       {
-        "title": "Square API Key",
+        "title": "Square API Token / Secret",
         "severity": 9,
         "regex": "sq0(atp|csp)-[0-9a-z\\-_]{22,43}"
+      }
+    ]
+  },
+  "stackhawk": {
+    "title": "StackHawk Secrets",
+    "checks": [
+      {
+        "title": "StackHawk API Key",
+        "severity": 9,
+        "regex": "hawk\\.[0-9A-Za-z\\-_]{20}\\.[0-9A-Za-z\\-_]{20}"
       }
     ]
   },

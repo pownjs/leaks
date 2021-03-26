@@ -57,6 +57,7 @@ checks:
     severity: 1
     regex: \b[0-9a-z_]*(secret)\s*=\s*['"]?[^\s'"]{6,}['"]?
     # TODO: This is slow, requires improvements.
+    filterRegex: '=\s*(this\.|function\()'
     
   - title: Generic Password
     severity: 1
@@ -75,6 +76,7 @@ checks:
     severity: 1
     regex: \b[0-9a-z_]*(password|passwd|pwd)\s*=\s*['"]?(?<exact>[^\s'"]{6,})['"]?
     # TODO: This is slow, requires improvements.
+    filterRegex: '=\s*(this\.|function\()'
     entropy: 20
     tests:
       positive:
