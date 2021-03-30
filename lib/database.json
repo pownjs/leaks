@@ -5,7 +5,7 @@
       {
         "title": "Artifactory Session Token",
         "severity": 9,
-        "regex": "(?i)artifactory.{0,50}(\\\"|'|`)?[a-zA-Z0-9=]{112}(\\\"|'|`)?",
+        "regex": "artifactory.{0,50}(\\\"|'|`)?[a-zA-Z0-9=]{112}(\\\"|'|`)?",
         "safe": false
       }
     ]
