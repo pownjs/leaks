@@ -208,7 +208,7 @@
         "title": "Generic Password",
         "severity": 1,
         "regex": "\\b[0-9a-z_]*(password|passwd|pwd)\\s*=\\s*['\"]?(?<exact>[^\\s'\"]{6,})['\"]?",
-        "filterRegex": "=\\s*(this\\.|function\\()",
+        "filterRegex": "=\\s*(this\\.|function\\(|\\w+\\.call\\()",
         "entropy": 20
       },
       {

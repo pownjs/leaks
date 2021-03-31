@@ -31,3 +31,5 @@
 # - invalid: pwd = SDPUtils.matchPrefix(mediaSection
 - invalid: regenOAuthAppSecret = function(t)
 - invalid: sentry_secret = this._globalSecret)
+- invalid: password = Ae.call(r),
+- invalid: password = Ut.call(r),
