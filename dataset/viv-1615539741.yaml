@@ -33,3 +33,9 @@
 - invalid: sentry_secret = this._globalSecret)
 - invalid: password = Ae.call(r),
 - invalid: password = Ut.call(r),
+- invalid: OY2tGUkJ9DFFXJCRrRlJCeH5RUFdvfEQQAj47Bgxcb3s3D
+- invalid: lq1f2S1vzU1ySHoRMvKwkHkzM5w+42U03h7oY2LzPHVegwCjMXwvZ63mR9zLK8kYRyuAKjBC4VMZWOYWNrQKpwoyfogkRp20ahFxQxE/zTjZ5sYufwlC+7rHBUHbSDhGLCN5dfQepx8
+# additional patter can be found at https://docs.gitguardian.com/secrets-detection/detectors/specifics/index
+- invalid: 'key: "wave2Style'
+# - invalid: oauth_token_secret = e.secret),
+# - invalid: password = o.password,
