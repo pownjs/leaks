@@ -5,6 +5,7 @@ checks:
     regex: >-
       \b[0-9a-z_]*(?<!(site|license|bugsnag|recaptcha)[_-]?)(key)\\*['"]?\s*(:|=|=>|:=|\|\||;s:\d+:)\s*\\*['"]([0-9]+[a-z]+[0-9a-z\.\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\.\-_]{4,})
     # TODO: This is slow, requires improvements.
+    entropy: 60
     tests:
       negative:
         - '''sitekey'':  ''6LewHloUAAAAAKdXnqjicyOfUNBxw-jH1jK6oNKA'''
@@ -16,6 +17,7 @@ checks:
     regex: >-
       \b[0-9a-z_]*(?<!(adblock|site|license|bugsnag|recaptcha)[_-]?)(key)\s*=\s*['"]?([0-9]+[a-z]+[0-9a-z\.\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\.\-_]{4,})
     # TODO: This is slow, requires improvements.
+    entropy: 60
     tests:
       negative:
         - >-
@@ -26,6 +28,7 @@ checks:
     regex: >-
       \b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\*['"]?\s*(:|=|=>|:=|\|\||;s:\d+:)\s*\\*['"]([0-9]+[a-z]+[0-9a-z\.\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\.\-_]{6,})
     # TODO: This is slow, requires improvements.
+    entropy: 85
     tests:
       negative:
         - '"theme_token":"1L5NmeJ_gliOt8LvE7G2fFaT-_YQ0bv-IcXk_o8q9"'
@@ -52,12 +55,14 @@ checks:
     regex: >-
       \b[0-9a-z_]*(secret)\\*['"]\s*(:|=|=>|:=|\|\||;s:\d+:)\s*\\*['"][^\s'"]{6,}['"]?
     # TODO: This is slow, requires improvements.
+    entropy: 60
     
   - title: Generic Secret
     severity: 1
     regex: \b[0-9a-z_]*(secret)\s*=\s*['"]?[^\s'"]{6,}['"]?
     # TODO: This is slow, requires improvements.
     filterRegex: '=\s*(this\.|function\()'
+    entropy: 60
     
   - title: Generic Password
     severity: 1
