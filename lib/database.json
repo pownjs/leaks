@@ -117,25 +117,25 @@
     "checks": [
       {
         "title": "RKCS8",
-        "severity": 10,
+        "severity": 9,
         "regex": "-----BEGIN PRIVATE KEY-----",
         "flags": ""
       },
       {
         "title": "RSA",
-        "severity": 10,
+        "severity": 9,
         "regex": "-----BEGIN RSA PRIVATE KEY-----",
         "flags": ""
       },
       {
         "title": "SSH",
-        "severity": 10,
+        "severity": 9,
         "regex": "-----BEGIN OPENSSH PRIVATE KEY-----",
         "flags": ""
       },
       {
         "title": "PGP",
-        "severity": 10,
+        "severity": 9,
         "regex": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
         "flags": ""
       }
@@ -169,17 +169,20 @@
       {
         "title": "Generic Key",
         "severity": 1,
-        "regex": "\\b[0-9a-z_]*(?<!(site|license|bugsnag|recaptcha)[_-]?)(key)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})"
+        "regex": "\\b[0-9a-z_]*(?<!(site|license|bugsnag|recaptcha)[_-]?)(key)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
+        "entropy": 60
       },
       {
         "title": "Generic Key",
         "severity": 1,
-        "regex": "\\b[0-9a-z_]*(?<!(adblock|site|license|bugsnag|recaptcha)[_-]?)(key)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})"
+        "regex": "\\b[0-9a-z_]*(?<!(adblock|site|license|bugsnag|recaptcha)[_-]?)(key)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
+        "entropy": 60
       },
       {
         "title": "Generic Token",
         "severity": 1,
-        "regex": "\\b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})"
+        "regex": "\\b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
+        "entropy": 85
       },
       {
         "title": "Generic Token",
@@ -190,13 +193,15 @@
       {
         "title": "Generic Secret",
         "severity": 1,
-        "regex": "\\b[0-9a-z_]*(secret)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][^\\s'\"]{6,}['\"]?"
+        "regex": "\\b[0-9a-z_]*(secret)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][^\\s'\"]{6,}['\"]?",
+        "entropy": 60
       },
       {
         "title": "Generic Secret",
         "severity": 1,
         "regex": "\\b[0-9a-z_]*(secret)\\s*=\\s*['\"]?[^\\s'\"]{6,}['\"]?",
-        "filterRegex": "=\\s*(this\\.|function\\()"
+        "filterRegex": "=\\s*(this\\.|function\\()",
+        "entropy": 60
       },
       {
         "title": "Generic Password",
@@ -334,7 +339,8 @@
       {
         "title": "Nuget API Key",
         "severity": 9,
-        "regex": "oy2[a-z0-9]{43}"
+        "regex": "\\b(?<exact>oy2[a-z0-9]{43})",
+        "flags": ""
       }
     ]
   },
