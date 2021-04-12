@@ -1,6 +1,6 @@
 {
   "name": "@pown/leaks",
-  "version": "2.27.2",
+  "version": "2.28.0",
   "description": "Pownage guaranteed",
   "main": "lib/index.js",
   "scripts": {
