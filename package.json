@@ -31,15 +31,15 @@
     "@pown/request": "^2.23.0"
   },
   "devDependencies": {
-    "@pown/async": "^2.11.0",
-    "@pown/cli": "^2.30.0",
+    "@pown/async": "^2.12.0",
+    "@pown/cli": "^2.33.0",
     "@pown/request": "^2.26.2",
     "@pown/toolchain": "^2.1.0",
-    "js-yaml": "^4.0.0",
+    "js-yaml": "^4.1.0",
     "safe-regex": "^2.1.1"
   },
   "dependencies": {
-    "@pown/regexp": "^2.2.2"
+    "@pown/regexp": "^2.2.3"
   },
   "pown": {
     "commands": [
