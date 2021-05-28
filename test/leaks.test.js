@@ -107,5 +107,29 @@ describe('LeaksPilot', () => {
             assert.ok(results.every((result) => result.index > 0))
             assert.deepEqual(results.map((result) => result.find), ['secret1', 'secret2', 'secret3'])
         })
+
+        it('must trim line', async() => {
+            const database = {
+                test: compileCollection({
+                    checks: [{
+                        regex: /secret\d+/g
+                    }]
+                })
+            }
+
+            const lp = new LeaksPilot({ database })
+
+            const secret1 = 'secret' + Array(1024).fill('0').join('')
+
+            const results = []
+
+            for await (const match of lp.iterateOverSearchPerCodeLine(Array(1024).fill('a').join('') + ';b;' + secret1 + ';' + Array(1024).fill('c').join(''))) {
+                results.push(match)
+            }
+
+            assert.ok(results.length === 1)
+            assert.ok(results.every((result) => result.index > 0))
+            assert.deepEqual(results.map((result) => result.find), [secret1])
+        })
     })
 })
