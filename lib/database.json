@@ -16,8 +16,7 @@
       {
         "title": "AWS Client ID",
         "severity": 6,
-        "regex": "\\b(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
-        "flags": ""
+        "regex": "\\b(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}"
       },
       {
         "title": "AWS Secret Key",
@@ -83,7 +82,8 @@
       {
         "title": "AWS S3 Bucket",
         "severity": 1,
-        "regex": "s3://[0-9a-z.\\-_/]+"
+        "regex": "s3://[0-9a-zA-Z.\\-_/]+",
+        "filterRegex": "(s3://npm-registry-packages)"
       },
       {
         "title": "AWS API Gateway",
@@ -118,26 +118,22 @@
       {
         "title": "RKCS8",
         "severity": 9,
-        "regex": "-----BEGIN PRIVATE KEY-----",
-        "flags": ""
+        "regex": "-----BEGIN PRIVATE KEY-----"
       },
       {
         "title": "RSA",
         "severity": 9,
-        "regex": "-----BEGIN RSA PRIVATE KEY-----",
-        "flags": ""
+        "regex": "-----BEGIN RSA PRIVATE KEY-----"
       },
       {
         "title": "SSH",
         "severity": 9,
-        "regex": "-----BEGIN OPENSSH PRIVATE KEY-----",
-        "flags": ""
+        "regex": "-----BEGIN OPENSSH PRIVATE KEY-----"
       },
       {
         "title": "PGP",
         "severity": 9,
-        "regex": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
-        "flags": ""
+        "regex": "-----BEGIN PGP PRIVATE KEY BLOCK-----"
       }
     ]
   },
@@ -170,36 +166,42 @@
         "title": "Generic Key",
         "severity": 1,
         "regex": "\\b[0-9a-z_]*(?<!(site|license|bugsnag|recaptcha)[_-]?)(key)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
+        "flags": "i",
         "entropy": 60
       },
       {
         "title": "Generic Key",
         "severity": 1,
         "regex": "\\b[0-9a-z_]*(?<!(adblock|site|license|bugsnag|recaptcha)[_-]?)(key)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
+        "flags": "i",
         "entropy": 60
       },
       {
         "title": "Generic Token",
         "severity": 1,
         "regex": "\\b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
+        "flags": "i",
         "entropy": 85
       },
       {
         "title": "Generic Token",
         "severity": 1,
         "regex": "\\b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\s*=\\s*['\"]?(?<exact>[0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
+        "flags": "i",
         "entropy": 85
       },
       {
         "title": "Generic Secret",
         "severity": 1,
         "regex": "\\b[0-9a-z_]*(secret)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][^\\s'\"]{6,}['\"]?",
+        "flags": "i",
         "entropy": 60
       },
       {
         "title": "Generic Secret",
         "severity": 1,
         "regex": "\\b[0-9a-z_]*(secret)\\s*=\\s*['\"]?[^\\s'\"]{6,}['\"]?",
+        "flags": "i",
         "filterRegex": "=\\s*(this\\.|function\\()",
         "entropy": 60
       },
@@ -207,31 +209,36 @@
         "title": "Generic Password",
         "severity": 1,
         "regex": "\\b[0-9a-z_]*(password|passwd|pwd)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"](?<exact>[^\\s'\"]{6,})['\"]?",
+        "flags": "i",
         "entropy": 20
       },
       {
         "title": "Generic Password",
         "severity": 1,
         "regex": "\\b[0-9a-z_]*(password|passwd|pwd)\\s*=\\s*['\"]?(?<exact>[^\\s'\"]{6,})['\"]?",
+        "flags": "i",
         "filterRegex": "=\\s*(this\\.|function\\(|\\w+\\.call\\()",
         "entropy": 20
       },
       {
         "title": "Generic Authorization",
         "severity": 1,
-        "regex": "\\b(authorization)\\s*:\\s*(bearer|token|basic)\\s+[0-9a-z\\.\\-_]{6,}"
+        "regex": "\\b(authorization)\\s*:\\s*(bearer|token|basic)\\s+[0-9a-z\\.\\-_]{6,}",
+        "flags": "i"
       },
       {
         "title": "Sensitive URL Credentials",
         "severity": 7,
         "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\"]+?:(?<exact>[^\\s\\{\\}\\(\\)\\<\\>\\/%]{3,})@[^\\s'\"\\)]{4,}",
-        "filterRegex": "(sentry\\.io\\/)",
+        "flags": "i",
+        "filterRegex": "(sentry\\.io\\|username|password)",
         "entropy": 20
       },
       {
         "title": "Sensitive URL",
         "severity": 5,
         "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\":]{3,}@[^\\s'\"\\)]{4,}",
+        "flags": "i",
         "filterRegex": "(sentry\\.io\\/)"
       }
     ]
@@ -265,7 +272,7 @@
       {
         "title": "Google API Key",
         "severity": 4,
-        "regex": "AIza[0-9a-z\\-_]{35}"
+        "regex": "AIza[0-9a-zA-Z\\-_]{35}"
       },
       {
         "title": "Google Oauth ID",
@@ -329,7 +336,6 @@
       {
         "title": "Mailgun API Key",
         "regex": "key-[0-9a-zA-Z]{32}",
-        "flags": "",
         "severity": 9
       }
     ]
@@ -340,8 +346,7 @@
       {
         "title": "Nuget API Key",
         "severity": 9,
-        "regex": "\\b(?<exact>oy2[a-z0-9]{43})",
-        "flags": ""
+        "regex": "\\b(?<exact>oy2[a-z0-9]{43})"
       }
     ]
   },
@@ -471,8 +476,7 @@
       {
         "title": "Twilio API Key",
         "severity": 8,
-        "regex": "SK[0-9a-fA-F]{32}",
-        "flags": ""
+        "regex": "SK[0-9a-fA-F]{32}"
       }
     ]
   },

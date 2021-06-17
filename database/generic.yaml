@@ -5,6 +5,7 @@ checks:
     regex: >-
       \b[0-9a-z_]*(?<!(site|license|bugsnag|recaptcha)[_-]?)(key)\\*['"]?\s*(:|=|=>|:=|\|\||;s:\d+:)\s*\\*['"]([0-9]+[a-z]+[0-9a-z\.\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\.\-_]{4,})
     # TODO: This is slow, requires improvements.
+    flags: 'i'
     entropy: 60
     tests:
       negative:
@@ -17,6 +18,7 @@ checks:
     regex: >-
       \b[0-9a-z_]*(?<!(adblock|site|license|bugsnag|recaptcha)[_-]?)(key)\s*=\s*['"]?([0-9]+[a-z]+[0-9a-z\.\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\.\-_]{4,})
     # TODO: This is slow, requires improvements.
+    flags: 'i'
     entropy: 60
     tests:
       negative:
@@ -28,6 +30,7 @@ checks:
     regex: >-
       \b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\*['"]?\s*(:|=|=>|:=|\|\||;s:\d+:)\s*\\*['"]([0-9]+[a-z]+[0-9a-z\.\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\.\-_]{6,})
     # TODO: This is slow, requires improvements.
+    flags: 'i'
     entropy: 85
     tests:
       negative:
@@ -39,6 +42,7 @@ checks:
     regex: >-
       \b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\s*=\s*['"]?(?<exact>[0-9]+[a-z]+[0-9a-z\.\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\.\-_]{6,})
     # TODO: This is slow, requires improvements.
+    flags: 'i'
     entropy: 85
     tests:
       positive:
@@ -55,12 +59,14 @@ checks:
     regex: >-
       \b[0-9a-z_]*(secret)\\*['"]\s*(:|=|=>|:=|\|\||;s:\d+:)\s*\\*['"][^\s'"]{6,}['"]?
     # TODO: This is slow, requires improvements.
+    flags: 'i'
     entropy: 60
     
   - title: Generic Secret
     severity: 1
     regex: \b[0-9a-z_]*(secret)\s*=\s*['"]?[^\s'"]{6,}['"]?
     # TODO: This is slow, requires improvements.
+    flags: 'i'
     filterRegex: '=\s*(this\.|function\()'
     entropy: 60
     
@@ -68,6 +74,7 @@ checks:
     severity: 1
     regex: >-
       \b[0-9a-z_]*(password|passwd|pwd)\\*['"]\s*(:|=|=>|:=|\|\||;s:\d+:)\s*\\*['"](?<exact>[^\s'"]{6,})['"]?
+    flags: 'i'
     # TODO: This is slow, requires improvements.
     entropy: 20
     tests:
@@ -81,6 +88,7 @@ checks:
     severity: 1
     regex: \b[0-9a-z_]*(password|passwd|pwd)\s*=\s*['"]?(?<exact>[^\s'"]{6,})['"]?
     # TODO: This is slow, requires improvements.
+    flags: 'i'
     filterRegex: '=\s*(this\.|function\(|\w+\.call\()'
     entropy: 20
     tests:
@@ -92,18 +100,21 @@ checks:
   - title: Generic Authorization
     severity: 1
     regex: \b(authorization)\s*:\s*(bearer|token|basic)\s+[0-9a-z\.\-_]{6,}
+    flags: 'i'
     
   - title: Sensitive URL Credentials
     severity: 7
     regex: >-
       (https?|ftp):\/\/[^\s\{\}\(\)\<\>\/%$'"]+?:(?<exact>[^\s\{\}\(\)\<\>\/%]{3,})@[^\s'"\)]{4,}
-    filterRegex: (sentry\.io\/)
+    flags: 'i'
+    filterRegex: (sentry\.io\|username|password)
     entropy: 20
     
   - title: Sensitive URL
     severity: 5
     regex: >-
       (https?|ftp):\/\/[^\s\{\}\(\)\<\>\/%$'":]{3,}@[^\s'"\)]{4,}
+    flags: 'i'
     filterRegex: (sentry\.io\/)
     tests:
       positive:

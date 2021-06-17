@@ -40,3 +40,11 @@
 # - invalid: oauth_token_secret = e.secret),
 # - invalid: password = o.password,
 - valid: password":"94t*R!TV@*^fKGbk%oe"
+- valid: sentry_key=7ab6425e7a7c4b01b71fdb51e76514bf
+- valid: AIzaSyA65lEHUEizIsNtlbNo-l2K18dT680nsaM
+- valid: AKIAIHW3CE3PFGSUG7XA
+- valid: AKIAIJRK7LE4JHJ4OK4Q
+- invalid: s3://npm-registry-packages
+- invalid: http://user:password@example.com:8080/#/some/path?foo=bar&baz=xoxo
+- valid: "apiKey: 'AIzaSyAPlPwE2qah_8C3XMnFIPtjFmKKXwEpgSg'"
+- valid: "headers: { 'X-Api-Key': 'adf51226795afbc4e7575ccc124face7' }"

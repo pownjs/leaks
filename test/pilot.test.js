@@ -1,14 +1,14 @@
 const assert = require('assert')
 
-const { LeaksPilot } = require('../lib/leaks')
+const { Pilot } = require('../lib/pilot')
 const { compileCollection } = require('../lib/compile')
 
-describe('LeaksPilot', () => {
+describe('Pilot', () => {
     describe('#iterateOverSearch', () => {
         it('must not produce results', async() => {
             const database = {}
 
-            const lp = new LeaksPilot({ database })
+            const lp = new Pilot({ database })
 
             const results = []
 
@@ -28,7 +28,7 @@ describe('LeaksPilot', () => {
                 })
             }
 
-            const lp = new LeaksPilot({ database })
+            const lp = new Pilot({ database })
 
             const results = []
 
@@ -49,7 +49,7 @@ describe('LeaksPilot', () => {
                 })
             }
 
-            const lp = new LeaksPilot({ database })
+            const lp = new Pilot({ database })
 
             const results = []
 
@@ -73,7 +73,7 @@ describe('LeaksPilot', () => {
                 })
             }
 
-            const lp = new LeaksPilot({ database })
+            const lp = new Pilot({ database })
 
             const results = []
 
@@ -95,7 +95,7 @@ describe('LeaksPilot', () => {
                 })
             }
 
-            const lp = new LeaksPilot({ database })
+            const lp = new Pilot({ database })
 
             const results = []
 
@@ -117,7 +117,7 @@ describe('LeaksPilot', () => {
                 })
             }
 
-            const lp = new LeaksPilot({ database })
+            const lp = new Pilot({ database })
 
             const secret1 = 'secret' + Array(1024).fill('0').join('')
 

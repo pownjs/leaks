@@ -3,7 +3,6 @@ checks:
   - title: Nuget API Key
     severity: 9
     regex: \b(?<exact>oy2[a-z0-9]{43})
-    flags: ''
     tests:
         positive:
             - oy2res2ip44zphcfttbar7i5kn4tttzulg6yhpkvzx3dcs

@@ -202,10 +202,10 @@ exports.yargs = {
             })(print)
         }
 
-        const { LeaksPilot } = require('../../../../lib/leaks')
+        const { Pilot } = require('../../../../lib/pilot')
         const { compileDatabase } = require('../../../../lib/compile')
 
-        const lp = new LeaksPilot({ database: { ...compileDatabase(require('../../../../lib/database')), ...require('../../../../lib/scanners') }, title: filterTitle, severity: filterSeverity })
+        const lp = new Pilot({ database: { ...compileDatabase(require('../../../../lib/database')), ...require('../../../../lib/scanners') }, title: filterTitle, severity: filterSeverity })
 
         let iterator
 

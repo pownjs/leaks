@@ -12,7 +12,7 @@ checks:
     
   - title: Google API Key
     severity: 4
-    regex: AIza[0-9a-z\-_]{35}
+    regex: AIza[0-9a-zA-Z\-_]{35}
     
   - title: Google Oauth ID
     severity: 1

@@ -3,8 +3,6 @@ checks:
   - title: AWS Client ID
     severity: 6
     regex: \b(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
-    flags: ''
-    # The flag is '' to avoid capturing the false positives bellow
     tests:
       negative:
         - A3TxNQshlGLAnE44zCIL
@@ -82,7 +80,8 @@ checks:
     
   - title: AWS S3 Bucket
     severity: 1
-    regex: s3://[0-9a-z.\-_/]+
+    regex: s3://[0-9a-zA-Z.\-_/]+
+    filterRegex: (s3://npm-registry-packages)
     
   - title: AWS API Gateway
     severity: 1
