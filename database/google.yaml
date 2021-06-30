@@ -12,8 +12,19 @@ checks:
     
   - title: Google API Key
     severity: 4
-    regex: AIza[0-9a-zA-Z\-_]{35}
+    regex: >-
+      AIza[0-9a-zA-Z\-_]{35}
     
   - title: Google Oauth ID
     severity: 1
-    regex: '[0-9]+-[0-9a-z_]{32}\.apps\.googleusercontent\.com'
+    regex: >-
+      [0-9]+-[0-9a-z_]{32}\.apps\.googleusercontent\.com
+
+  - title: Firebase Database URL
+    severity: 1
+    regex: >-
+      https://[a-z0-9-_]+\.firebaseio.com
+    text:
+      valid:
+        - >-
+          databaseURL: 'https://bb-cat-bla.firebaseio.com',

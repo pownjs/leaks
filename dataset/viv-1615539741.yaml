@@ -48,3 +48,4 @@
 - invalid: http://user:password@example.com:8080/#/some/path?foo=bar&baz=xoxo
 - valid: "apiKey: 'AIzaSyAPlPwE2qah_8C3XMnFIPtjFmKKXwEpgSg'"
 - valid: "headers: { 'X-Api-Key': 'adf51226795afbc4e7575ccc124face7' }"
+- valid: 'password"="94t*R!TV@*^fKGbk%oe"'
