@@ -12,6 +12,22 @@ describe('database', () => {
     const database = compileDatabase(Object.assign({}, ...fs.readdirSync(databaseRoot).map((file) => {
         const doc = jsYaml.load(fs.readFileSync(path.join(databaseRoot, file)).toString())
 
+        const { variables = {}, checks = [] } = doc
+
+        for (let check of checks) {
+            Object.entries(variables).forEach(([name, value]) => {
+                if (check.regex) {
+                    check.regex = check.regex.split('${' + name + '}').join(value)
+                }
+
+                if (check.filterRegex) {
+                    check.filterRegex = check.filterRegex.split('${' + name + '}').join(value)
+                }
+            })
+
+            delete check.tests
+        }
+
         return {
             [path.basename(file, '.yaml')]: doc
         }
@@ -30,9 +46,9 @@ describe('database', () => {
     it('database checks validate', () => {
         const first = (it) => Array.from(it)[0]
 
-        Object.entries(database).forEach(([name, { checks }]) => {
+        Object.entries(database).forEach(([name, { variables = {}, checks = [] }]) => {
             checks.forEach((check) => {
-                const { title, regex, test, tests = [], safe = true } = check
+                let { title, regex, filterRegex, test, tests = [], safe = true } = check
 
                 assert.ok(!test, `${JSON.stringify(title)} has incorrect test declaration`)
 
@@ -60,7 +76,13 @@ describe('database', () => {
                     }
 
                     if (safe) {
-                        assert.ok(safeRegex(regex), `${JSON.stringify(title)} validates safe regex test ${regex.toString()}`)
+                        if (regex) {
+                            assert.ok(safeRegex(regex), `${JSON.stringify(title)} validates safe regex test ${regex.toString()}`)
+                        }
+
+                        if (filterRegex) {
+                            assert.ok(safeRegex(filterRegex), `${JSON.stringify(title)} validates safe filter regex test ${regex.toString()}`)
+                        }
                     }
                 }
             })

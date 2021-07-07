@@ -160,85 +160,62 @@
     ]
   },
   "generic": {
-    "title": "Generic Secrets",
+    "title": "Generic",
     "checks": [
       {
-        "title": "Generic Key",
-        "severity": 1,
-        "regex": "\\b[0-9a-z_]*(?<!(site|license|bugsnag|recaptcha)[_-]?)(key)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
-        "flags": "i",
-        "entropy": 60
-      },
-      {
-        "title": "Generic Key",
-        "severity": 1,
-        "regex": "\\b[0-9a-z_]*(?<!(adblock|site|license|bugsnag|recaptcha)[_-]?)(key)\\s*=\\s*['\"]?([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{4,})",
-        "flags": "i",
-        "entropy": 60
-      },
-      {
         "title": "Generic Token",
         "severity": 1,
-        "regex": "\\b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\\\*['\"]?\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"]([0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
         "flags": "i",
+        "regex": "\\b[0-9a-zA-Z_-]*(token)\\s*['\"]?\\s*(:|=|:=|=>|;s:\\d+:)\\s*\\s*['\"]?(?<exact>[0-9a-zA-Z\\.\\-_=]{6,})",
+        "filterFlags": "i",
+        "filterRegex": "(csrf|theme)",
         "entropy": 85
       },
       {
-        "title": "Generic Token",
+        "title": "Generic Key",
         "severity": 1,
-        "regex": "\\b[0-9a-z_]*(?<!(csrf|theme)[_-]?)(token)\\s*=\\s*['\"]?(?<exact>[0-9]+[a-z]+[0-9a-z\\.\\-_=]{4,}|[a-z]+[0-9]+[0-9a-z\\.\\-_]{6,})",
         "flags": "i",
-        "entropy": 85
-      },
-      {
-        "title": "Generic Secret",
-        "severity": 1,
-        "regex": "\\b[0-9a-z_]*(secret)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"][^\\s'\"]{6,}['\"]?",
-        "flags": "i",
+        "regex": "\\b[0-9a-zA-Z_-]*(key)\\s*['\"]?\\s*(:|=|:=|=>|;s:\\d+:)\\s*\\s*['\"]?(?<exact>[0-9a-zA-Z\\.\\-_=]{6,})",
+        "filterFlags": "i",
+        "filterRegex": "(site|license|bugsnag|recaptcha|adblock)",
         "entropy": 60
       },
       {
         "title": "Generic Secret",
         "severity": 1,
-        "regex": "\\b[0-9a-z_]*(secret)\\s*=\\s*['\"]?[^\\s'\"]{6,}['\"]?",
         "flags": "i",
-        "filterRegex": "=\\s*(this\\.|function\\()",
+        "regex": "\\b[0-9a-zA-Z_-]*(secret)\\s*['\"]?\\s*(:|=|:=|=>|;s:\\d+:)\\s*\\s*['\"]?(?<exact>[0-9a-zA-Z\\.\\-_=]{6,})",
+        "filterRegex": "=\\s*(\\w+\\.call\\(|function\\(|this\\.)",
         "entropy": 60
       },
       {
         "title": "Generic Password",
         "severity": 1,
-        "regex": "\\b[0-9a-z_]*(password|passwd|pwd)\\\\*['\"]\\s*(:|=|=>|:=|\\|\\||;s:\\d+:)\\s*\\\\*['\"](?<exact>[^\\s'\"]{6,})['\"]?",
         "flags": "i",
-        "entropy": 20
-      },
-      {
-        "title": "Generic Password",
-        "severity": 1,
-        "regex": "\\b[0-9a-z_]*(password|passwd|pwd)\\s*=\\s*['\"]?(?<exact>[^\\s'\"]{6,})['\"]?",
-        "flags": "i",
-        "filterRegex": "=\\s*(this\\.|function\\(|\\w+\\.call\\()",
+        "regex": "\\b[0-9a-zA-Z_-]*(password|passwd|pwd)\\s*['\"]?\\s*(:|=|:=|=>|;s:\\d+:)\\s*\\s*['\"]?(?<exact>[^\\s'\"]{6,})",
+        "filterFlags": "i",
+        "filterRegex": "=\\s*(\\w+\\.call\\(|function\\(|this\\.)",
         "entropy": 20
       },
       {
         "title": "Generic Authorization",
         "severity": 1,
-        "regex": "\\b(authorization)\\s*:\\s*(bearer|token|basic)\\s+[0-9a-z\\.\\-_]{6,}",
-        "flags": "i"
+        "flags": "i",
+        "regex": "\\b(authorization)\\s*:\\s*(bearer|token|basic)\\s+[0-9a-zA-Z\\.\\-_]{6,}"
       },
       {
         "title": "Sensitive URL Credentials",
         "severity": 7,
-        "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\"]+?:(?<exact>[^\\s\\{\\}\\(\\)\\<\\>\\/%]{3,})@[^\\s'\"\\)]{4,}",
         "flags": "i",
+        "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\"]+?:(?<exact>[^\\s\\{\\}\\(\\)\\<\\>\\/%]{3,})@[^\\s'\"\\)]{4,}",
         "filterRegex": "(sentry\\.io\\|username|password)",
         "entropy": 20
       },
       {
         "title": "Sensitive URL",
         "severity": 5,
-        "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\":]{3,}@[^\\s'\"\\)]{4,}",
         "flags": "i",
+        "regex": "(https?|ftp):\\/\\/[^\\s\\{\\}\\(\\)\\<\\>\\/%$'\":]{3,}@[^\\s'\"\\)]{4,}",
         "filterRegex": "(sentry\\.io\\/)"
       }
     ]
