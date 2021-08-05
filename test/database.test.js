@@ -24,8 +24,6 @@ describe('database', () => {
                     check.filterRegex = check.filterRegex.split('${' + name + '}').join(value)
                 }
             })
-
-            delete check.tests
         }
 
         return {

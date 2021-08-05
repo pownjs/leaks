@@ -50,3 +50,5 @@
 - valid: "headers: { 'X-Api-Key': 'adf51226795afbc4e7575ccc124face7' }"
 - valid: 'password"="94t*R!TV@*^fKGbk%oe"'
 - valid: accessToken = d3baee3f34fb41778239a68516518723
+# - invalid: "Key: supported-applicant-countries"
+# - invalid: '"Password = "password"'
