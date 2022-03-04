@@ -33,7 +33,7 @@
   "devDependencies": {
     "@pown/async": "^2.17.0",
     "@pown/cli": "^2.35.0",
-    "@pown/request": "^2.26.2",
+    "@pown/request": "^2.26.3",
     "@pown/toolchain": "^2.6.0",
     "js-yaml": "^4.1.0",
     "safe-regex": "^2.1.1"
@@ -44,16 +44,6 @@
   "pown": {
     "commands": [
       "commands/leaks"
-    ]
-  },
-  "browserify": {
-    "transform": [
-      [
-        "babelify",
-        {
-          "extends": "./.babelrc"
-        }
-      ]
     ]
   }
 }
